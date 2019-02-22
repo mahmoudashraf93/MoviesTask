@@ -28,6 +28,22 @@
 		1EB23C0222206D380096B02D /* WebRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C0122206D380096B02D /* WebRepository.swift */; };
 		1EB23C04222075E10096B02D /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C03222075E10096B02D /* MovieResponse.swift */; };
 		1EB23C062220836A0096B02D /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C052220836A0096B02D /* ResponseHandler.swift */; };
+		1EB23C0722209C1E0096B02D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BF5222058990096B02D /* Router.swift */; };
+		1EB23C0A22209CA80096B02D /* WebMovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BFE22206C070096B02D /* WebMovieRepository.swift */; };
+		1EB23C0B22209CCB0096B02D /* WebRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C0122206D380096B02D /* WebRepository.swift */; };
+		1EB23C0C22209CD10096B02D /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C03222075E10096B02D /* MovieResponse.swift */; };
+		1EB23C0D22209CD80096B02D /* MovieEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BF92220661E0096B02D /* MovieEndPoint.swift */; };
+		1EB23C0E22209D0C0096B02D /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BF7222061F80096B02D /* JSONParameterEncoder.swift */; };
+		1EB23C0F22209D0F0096B02D /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BF1222056950096B02D /* URLParameterEncoder.swift */; };
+		1EB23C1022209D110096B02D /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BEE222055E50096B02D /* ParameterEncoding.swift */; };
+		1EB23C1122209D150096B02D /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C052220836A0096B02D /* ResponseHandler.swift */; };
+		1EB23C1222209D1A0096B02D /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BF32220581F0096B02D /* NetworkRouter.swift */; };
+		1EB23C1322209D1D0096B02D /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BEC2220558F0096B02D /* HTTPTask.swift */; };
+		1EB23C1422209D200096B02D /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BEA2220555C0096B02D /* HTTPMethod.swift */; };
+		1EB23C1522209D220096B02D /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BE82220552A0096B02D /* EndPointType.swift */; };
+		1EB23C1922209FB00096B02D /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C1822209FB00096B02D /* Parser.swift */; };
+		1EB23C1A22209FB00096B02D /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C1822209FB00096B02D /* Parser.swift */; };
+		1EB23C1B2220A1B80096B02D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BFC222066ED0096B02D /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +91,7 @@
 		1EB23C0122206D380096B02D /* WebRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRepository.swift; sourceTree = "<group>"; };
 		1EB23C03222075E10096B02D /* MovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponse.swift; sourceTree = "<group>"; };
 		1EB23C052220836A0096B02D /* ResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
+		1EB23C1822209FB00096B02D /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +151,7 @@
 				1EB23BC022204EAC0096B02D /* LaunchScreen.storyboard */,
 				1EB23BC322204EAC0096B02D /* Info.plist */,
 				1EB23C03222075E10096B02D /* MovieResponse.swift */,
+				1EB23C1822209FB00096B02D /* Parser.swift */,
 			);
 			path = MoviesTask;
 			sourceTree = "<group>";
@@ -361,6 +379,7 @@
 				1EB23BBA22204EA60096B02D /* ViewController.swift in Sources */,
 				1EB23C062220836A0096B02D /* ResponseHandler.swift in Sources */,
 				1EB23BB822204EA60096B02D /* AppDelegate.swift in Sources */,
+				1EB23C1922209FB00096B02D /* Parser.swift in Sources */,
 				1EB23BE92220552A0096B02D /* EndPointType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,7 +388,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EB23C1B2220A1B80096B02D /* NetworkManager.swift in Sources */,
+				1EB23C0E22209D0C0096B02D /* JSONParameterEncoder.swift in Sources */,
+				1EB23C0722209C1E0096B02D /* Router.swift in Sources */,
+				1EB23C1422209D200096B02D /* HTTPMethod.swift in Sources */,
+				1EB23C1022209D110096B02D /* ParameterEncoding.swift in Sources */,
+				1EB23C1122209D150096B02D /* ResponseHandler.swift in Sources */,
+				1EB23C0B22209CCB0096B02D /* WebRepository.swift in Sources */,
+				1EB23C1322209D1D0096B02D /* HTTPTask.swift in Sources */,
+				1EB23C1222209D1A0096B02D /* NetworkRouter.swift in Sources */,
+				1EB23C1522209D220096B02D /* EndPointType.swift in Sources */,
+				1EB23C0A22209CA80096B02D /* WebMovieRepository.swift in Sources */,
+				1EB23C0C22209CD10096B02D /* MovieResponse.swift in Sources */,
+				1EB23C0D22209CD80096B02D /* MovieEndPoint.swift in Sources */,
 				1EB23BCD22204EAC0096B02D /* MoviesTaskTests.swift in Sources */,
+				1EB23C1A22209FB00096B02D /* Parser.swift in Sources */,
+				1EB23C0F22209D0F0096B02D /* URLParameterEncoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
