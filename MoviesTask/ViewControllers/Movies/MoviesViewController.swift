@@ -9,17 +9,17 @@
 import UIKit
 
 class MoviesViewController: UIViewController {
-
+    
     @IBOutlet weak var moviesTableView: UITableView!
     
     let pageSize = 20
-    let userMovies = 2
+    let userMovies = 3
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.setupTableView()
     }
-
+    
     func setupTableView(){
         self.moviesTableView.delegate = self
         self.moviesTableView.dataSource = self
@@ -31,16 +31,21 @@ class MoviesViewController: UIViewController {
         self.moviesTableView.register(UINib(nibName: "LoadingTableViewCell", bundle: nil), forCellReuseIdentifier: "LoadingTableViewCell")
         
     }
+    @IBAction func btnAddMoviePressed(_ sender: Any) {
+        
+        if let addMovieVC = self.storyboard?.instantiateViewController(withIdentifier: "AddMovieViewController") as? AddMovieViewController {
+            
+            self.present(addMovieVC, animated: true, completion: nil)
+        }
+    }
 }
 
 extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-           return userMovies
-        default:
-            return pageSize
+        if userMovies > 0 && section == 0 {
+            return userMovies
         }
+        return pageSize
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -48,12 +53,10 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
+        if userMovies > 0 && section == 0 {
             return "My Movies"
-        default:
-            return "Movies"
         }
+        return "Movies"
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == pageSize - 1{
@@ -64,13 +67,21 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         else {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell {
-            
-            return cell
-        }
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell {
+                
+                return cell
+            }
         }
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.textColor = .white
+            view.backgroundColor = .black
+        }
+        
+    }
     
 }
