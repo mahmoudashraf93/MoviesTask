@@ -9,23 +9,30 @@
 import Foundation
 import UIKit
 
+let imageCache = NSCache<NSString, UIImage>()
 
 extension UIImageView {
     public func imageFromServerURL(urlString: String) {
-        self.image = nil
-        WebMovieRepository().downloadImage(imageUrl: urlString) { (data, error) in
-            DispatchQueue.main.async(execute: { () -> Void in
-                
-                if error != nil {
-                    self.image = UIImage(named: "placeholder")
-                    return
-                }
-                let image = UIImage(data: data!)
-                self.image = image
-                self.layoutSubviews()
-            })
+        if let cachedImage = imageCache.object(forKey: urlString as NSString) {
+            DispatchQueue.main.async{
+                self.image = cachedImage
+            }
         }
-
+        else {
+            WebMovieRepository().downloadImage(imageUrl: urlString) { (data, error) in
+                DispatchQueue.main.async{
+                    
+                    if error != nil && data == nil {
+                        self.image = UIImage(named: "placeholder")
+                        return
+                    }
+                    if let image = UIImage(data: data!) {
+                    imageCache.setObject(image, forKey: urlString as NSString)
+                    self.image = image
+                    }
+                }
+            }
+            
+        }
     }
-    
 }
