@@ -8,19 +8,24 @@
 
 import Foundation
 import UIKit
+
+
 extension UIImageView {
     public func imageFromServerURL(urlString: String) {
         self.image = nil
-        URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
-            print(Thread.current)
-            if error != nil {
-                print(error)
-                return
-            }
+        WebMovieRepository().downloadImage(imageUrl: urlString) { (data, error) in
             DispatchQueue.main.async(execute: { () -> Void in
+                
+                if error != nil {
+                    self.image = UIImage(named: "placeholder")
+                    return
+                }
                 let image = UIImage(data: data!)
                 self.image = image
+                self.layoutSubviews()
             })
-            
-        }).resume()
-    }}
+        }
+
+    }
+    
+}

@@ -14,16 +14,28 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var lblOverview: UILabel!
     @IBOutlet weak var lblReleaseDate: UILabel!
     
-    var imageStr : String? {
-        didSet{
-           self.imgPoster.imageFromServerURL(urlString: imageStr!)
+    var movie: Movie? {
+        didSet {
+          self.setupViews()
         }
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    func setupViews(){
+        self.lblTitle.text = self.movie?.title ?? ""
+        self.lblOverview.text = self.movie?.overview ?? ""
+        self.lblReleaseDate.text = self.movie?.releaseDate ?? ""
+        
+        if let imgUrl = self.movie?.posterPath {
+            self.imgPoster.imageFromServerURL(urlString: imgUrl)
+        }
+        else {
+            self.imgPoster.image = UIImage(named:"placeholder")
+        }
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
