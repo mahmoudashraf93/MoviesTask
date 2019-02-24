@@ -29,8 +29,8 @@ class AddMovieViewController: UIViewController {
     }
     
     private func registerNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func unregisterNotifications() {
@@ -38,16 +38,19 @@ class AddMovieViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc func keyboardWillShow(notification: NSNotification){
-        guard let keyboardFrame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-            scrollView.contentInset.bottom = view.convert(keyboardFrame.cgRectValue, from: nil).size.height
-        
+   @objc func keyboardDidShow(notification: NSNotification) {
+    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+            self.scrollView.contentInset = contentInsets
+            self.scrollView.scrollIndicatorInsets = contentInsets
+        }
     }
     
-    @objc func keyboardWillHide(notification: NSNotification){
-        scrollView.contentInset.bottom = 0
+    @objc func keyboardWillBeHidden(notification: NSNotification) {
+        let contentInsets = UIEdgeInsets.zero
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
     }
-
     func setupDatePicker(){
         
         self.releaseDatePickerView = UIDatePicker()
@@ -67,14 +70,14 @@ class AddMovieViewController: UIViewController {
     @objc func toolbarBtnPressed(){
        
         if self.tfMovieName.isFirstResponder {
-            self.tfMovieName.resignFirstResponder()
+//            self.tfMovieName.resignFirstResponder()
             self.tfReleaseDate.becomeFirstResponder()
-            
+
         }
         else if tfReleaseDate.isFirstResponder {
-            self.tfReleaseDate.resignFirstResponder()
+//            self.tfReleaseDate.resignFirstResponder()
             self.tvOverview.becomeFirstResponder()
-           
+
         }
         else if tvOverview.isFirstResponder {
             self.tvOverview.resignFirstResponder()
