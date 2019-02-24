@@ -9,7 +9,16 @@
 import UIKit
 
 class MovieTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var imgPoster: UIImageView!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblOverview: UILabel!
+    @IBOutlet weak var lblReleaseDate: UILabel!
+    
+    var imageStr : String? {
+        didSet{
+           self.imgPoster.imageFromServerURL(urlString: imageStr!)
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

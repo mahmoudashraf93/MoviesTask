@@ -14,10 +14,22 @@ class MoviesViewController: UIViewController {
     
     let pageSize = 20
     let userMovies = 3
+    var movie : MovieResponse? {
+        didSet {
+            DispatchQueue.main.async {
+                self.moviesTableView.reloadData()
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.setupTableView()
+        
+        let webRepo = WebMovieRepository().get(page: 1) { (movie, error) in
+            
+            self.movie = movie
+        }
     }
     
     func setupTableView(){
@@ -45,7 +57,7 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         if userMovies > 0 && section == 0 {
             return userMovies
         }
-        return pageSize
+        return self.movie?.movies?.count ?? 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -68,7 +80,8 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         else {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell {
-                
+                let movie = self.movie?.movies?[indexPath.row]
+                cell.imageStr = "https://image.tmdb.org/t/p/w185\(movie?.posterPath ?? "")"
                 return cell
             }
         }

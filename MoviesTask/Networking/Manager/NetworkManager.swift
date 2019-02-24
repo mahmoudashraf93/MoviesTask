@@ -11,6 +11,6 @@ import Foundation
 struct NetworkManager {
     
     static let environment : NetworkEnvironment = .production
-    static let movieAPIKey = "acea91d2bff1c53e6604e4985b69892"
+    static let movieAPIKey = "acea91d2bff1c53e6604e4985b6989e2"
     
 }

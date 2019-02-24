@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E9197BB2222E79B0053B595 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9197BA2222E79B0053B595 /* UIImageView+Extensions.swift */; };
 		1EB23BB822204EA60096B02D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BB722204EA60096B02D /* AppDelegate.swift */; };
 		1EB23BBA22204EA60096B02D /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BB922204EA60096B02D /* MoviesViewController.swift */; };
 		1EB23BBD22204EA60096B02D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EB23BBB22204EA60096B02D /* Main.storyboard */; };
@@ -74,6 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E9197BA2222E79B0053B595 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		1EB23BB422204EA60096B02D /* MoviesTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EB23BB722204EA60096B02D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EB23BB922204EA60096B02D /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			children = (
 				1EB23C2B2220CE500096B02D /* UIToolbar+Extensions.swift */,
 				1EB23C2E2220D9B90096B02D /* UIScrollView+Extensions.swift */,
+				1E9197BA2222E79B0053B595 /* UIImageView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				1EB23BF42220581F0096B02D /* NetworkRouter.swift in Sources */,
 				1EB23BFA2220661E0096B02D /* MovieEndPoint.swift in Sources */,
 				1EB23BFF22206C070096B02D /* WebMovieRepository.swift in Sources */,
+				1E9197BB2222E79B0053B595 /* UIImageView+Extensions.swift in Sources */,
 				1EB23BF8222061F80096B02D /* JSONParameterEncoder.swift in Sources */,
 				1EB23C0222206D380096B02D /* WebRepository.swift in Sources */,
 				1EB23BEB2220555C0096B02D /* HTTPMethod.swift in Sources */,
