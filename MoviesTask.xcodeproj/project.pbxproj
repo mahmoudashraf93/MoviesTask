@@ -51,6 +51,9 @@
 		1EB23C292220BEE90096B02D /* AddMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C282220BEE90096B02D /* AddMovieViewController.swift */; };
 		1EB23C2C2220CE500096B02D /* UIToolbar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C2B2220CE500096B02D /* UIToolbar+Extensions.swift */; };
 		1EB23C2F2220D9B90096B02D /* UIScrollView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C2E2220D9B90096B02D /* UIScrollView+Extensions.swift */; };
+		1EB23C31222105830096B02D /* Movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 1EB23C30222105830096B02D /* Movies.json */; };
+		1EB23C32222105950096B02D /* Movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 1EB23C30222105830096B02D /* Movies.json */; };
+		1EB23C36222105DC0096B02D /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C35222105DC0096B02D /* ParserTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +109,8 @@
 		1EB23C282220BEE90096B02D /* AddMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovieViewController.swift; sourceTree = "<group>"; };
 		1EB23C2B2220CE500096B02D /* UIToolbar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolbar+Extensions.swift"; sourceTree = "<group>"; };
 		1EB23C2E2220D9B90096B02D /* UIScrollView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extensions.swift"; sourceTree = "<group>"; };
+		1EB23C30222105830096B02D /* Movies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Movies.json; sourceTree = "<group>"; };
+		1EB23C35222105DC0096B02D /* ParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +171,7 @@
 				1EB23BC322204EAC0096B02D /* Info.plist */,
 				1EB23C03222075E10096B02D /* MovieResponse.swift */,
 				1EB23C1822209FB00096B02D /* Parser.swift */,
+				1EB23C30222105830096B02D /* Movies.json */,
 				1EB23C2D2220CE550096B02D /* Extensions */,
 			);
 			path = MoviesTask;
@@ -176,6 +182,7 @@
 			children = (
 				1EB23BCC22204EAC0096B02D /* MoviesTaskTests.swift */,
 				1EB23BCE22204EAC0096B02D /* Info.plist */,
+				1EB23C35222105DC0096B02D /* ParserTests.swift */,
 			);
 			path = MoviesTaskTests;
 			sourceTree = "<group>";
@@ -392,6 +399,7 @@
 			files = (
 				1EB23BC222204EAC0096B02D /* LaunchScreen.storyboard in Resources */,
 				1EB23C252220B4130096B02D /* LoadingTableViewCell.xib in Resources */,
+				1EB23C31222105830096B02D /* Movies.json in Resources */,
 				1EB23BBF22204EAC0096B02D /* Assets.xcassets in Resources */,
 				1EB23C212220A83F0096B02D /* MovieTableViewCell.xib in Resources */,
 				1EB23BBD22204EA60096B02D /* Main.storyboard in Resources */,
@@ -402,6 +410,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EB23C32222105950096B02D /* Movies.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +472,7 @@
 				1EB23C0D22209CD80096B02D /* MovieEndPoint.swift in Sources */,
 				1EB23BCD22204EAC0096B02D /* MoviesTaskTests.swift in Sources */,
 				1EB23C1A22209FB00096B02D /* Parser.swift in Sources */,
+				1EB23C36222105DC0096B02D /* ParserTests.swift in Sources */,
 				1EB23C0F22209D0F0096B02D /* URLParameterEncoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
