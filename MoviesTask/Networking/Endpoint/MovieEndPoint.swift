@@ -13,14 +13,22 @@ enum NetworkEnvironment {
 }
 
 public enum MovieApi {
-    case discover(page:Int)
+    case discover(page: Int)
+    case downloadImage(url: String)
+
 }
 
 extension MovieApi: EndPointType {
     
     var environmentBaseURL : String {
-        switch NetworkManager.environment {
-        case .production: return "https://api.themoviedb.org/3/"
+        switch self {
+        case .downloadImage:
+            return "https://image.tmdb.org/t/p/w185"
+        default:
+            switch NetworkManager.environment {
+            case .production: return "https://api.themoviedb.org/3/"
+        }
+        
         }
     }
     
@@ -33,6 +41,8 @@ extension MovieApi: EndPointType {
         switch self {
         case .discover:
             return "discover/movie"
+        case .downloadImage(let urlStr):
+            return urlStr
         }
     }
     
@@ -46,6 +56,8 @@ extension MovieApi: EndPointType {
             return .requestParameters(bodyParameters: nil,
                                       urlParameters: ["page":page,
                                                       "api_key":NetworkManager.movieAPIKey])
+        case .downloadImage(let urlStr):
+            return .download(url: urlStr)
         default:
             return .request
         }

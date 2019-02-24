@@ -55,6 +55,9 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
                 try self.configureParameters(bodyParameters: bodyParameters,
                                              urlParameters: urlParameters,
                                              request: &request)
+            case .download:
+                // the url is already setup
+               return request
             }
             return request
         } catch {
@@ -86,5 +89,4 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
             request.setValue(value, forHTTPHeaderField: key)
         }
     }
-    
 }

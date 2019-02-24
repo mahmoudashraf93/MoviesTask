@@ -37,5 +37,19 @@ class WebMovieRepository<ResponseType: MovieResponse>: WebRepository {
             }
         })
     }
+    
+    func downloadImage(imageUrl: String, completion: @escaping (Data?, String?) -> ()) {
+        
+        self.router.request(.downloadImage(url: imageUrl), completion: { (data, response, error) in
+            
+            if let responseError = error {
+                completion(nil, responseError.localizedDescription)
+            }
+            else {
+                    completion(data, nil)
+            }
+        })
+    }
+    
 
 }

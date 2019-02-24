@@ -19,8 +19,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="209.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good will hunting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0w2-5X-KpD">
-                        <rect key="frame" x="81" y="11" width="158.5" height="23"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good will hunting" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0w2-5X-KpD">
+                        <rect key="frame" x="24" y="11" width="272" height="23"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -46,6 +46,7 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="0w2-5X-KpD" secondAttribute="trailing" constant="8" id="5uC-Sn-m9t"/>
                     <constraint firstAttribute="bottom" secondItem="s70-At-epe" secondAttribute="bottom" constant="8" id="76j-vK-Qeh"/>
                     <constraint firstItem="omH-1l-bit" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Bcc-wt-kV7"/>
                     <constraint firstItem="o87-3g-W7z" firstAttribute="leading" secondItem="omH-1l-bit" secondAttribute="trailing" constant="8" id="CgF-sN-xa0"/>
@@ -57,6 +58,7 @@
                     <constraint firstItem="0w2-5X-KpD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="dNs-ta-4vd"/>
                     <constraint firstItem="s70-At-epe" firstAttribute="top" relation="greaterThanOrEqual" secondItem="o87-3g-W7z" secondAttribute="bottom" constant="16.5" id="h1C-JV-8yI"/>
                     <constraint firstItem="0w2-5X-KpD" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="oZj-0G-Ro8"/>
+                    <constraint firstItem="0w2-5X-KpD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="oui-dt-rTt"/>
                     <constraint firstItem="o87-3g-W7z" firstAttribute="top" secondItem="0w2-5X-KpD" secondAttribute="bottom" constant="8" id="vfd-4M-p3A"/>
                 </constraints>
             </tableViewCellContentView>

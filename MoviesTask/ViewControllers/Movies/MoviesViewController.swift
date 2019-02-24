@@ -13,7 +13,7 @@ class MoviesViewController: UIViewController {
     @IBOutlet weak var moviesTableView: UITableView!
     
     let pageSize = 20
-    let userMovies = 3
+    let userMovies = 0
     var movie : MovieResponse? {
         didSet {
             DispatchQueue.main.async {
@@ -71,7 +71,7 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         return "Movies"
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == pageSize - 1{
+        if indexPath.row == self.movie?.movies?.count ?? 0 - 1{
             if let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell") as? LoadingTableViewCell {
                 
                 cell.loadingActivityIndicator.startAnimating()
@@ -81,7 +81,7 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         else {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell {
                 let movie = self.movie?.movies?[indexPath.row]
-                cell.imageStr = "https://image.tmdb.org/t/p/w185\(movie?.posterPath ?? "")"
+                cell.movie = movie
                 return cell
             }
         }
@@ -92,7 +92,6 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         
         if let header = view as? UITableViewHeaderFooterView {
             header.textLabel?.textColor = .white
-            view.backgroundColor = .black
         }
         
     }
