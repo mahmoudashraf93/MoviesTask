@@ -38,9 +38,9 @@ class WebMovieRepository<ResponseType: MovieResponse>: WebRepository {
         })
     }
     
-    func downloadImage(imageUrl: String, completion: @escaping (Data?, String?) -> ()) {
+    func downloadImage(imageUrl: String, completion: @escaping (Data?, String?) -> ())-> URLSessionTask? {
         
-        self.router.request(.downloadImage(url: imageUrl), completion: { (data, response, error) in
+       let task = self.router.request(.downloadImage(url: imageUrl), completion: { (data, response, error) in
             
             if let responseError = error {
                 completion(nil, responseError.localizedDescription)
@@ -49,6 +49,7 @@ class WebMovieRepository<ResponseType: MovieResponse>: WebRepository {
                     completion(data, nil)
             }
         })
+        return task
     }
     
 
