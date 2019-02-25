@@ -13,8 +13,6 @@ protocol ImageDownloadable {
 }
 let imageCache = NSCache<NSString, UIImage>()
 
-
-
 extension UIImageView: ImageDownloadable {
     struct Holder {
         static var task: URLSessionTask?
