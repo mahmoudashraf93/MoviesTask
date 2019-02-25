@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wAf-HK-SPp">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rno-tT-xCE">
@@ -48,7 +48,7 @@
                             <constraint firstItem="wAf-HK-SPp" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="H5k-Rz-K4z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rno-tT-xCE" secondAttribute="trailing" constant="15" id="MCw-1l-mZg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rno-tT-xCE" secondAttribute="bottom" constant="15" id="MLt-vE-zex"/>
-                            <constraint firstItem="wAf-HK-SPp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Pr9-sn-NF7"/>
+                            <constraint firstItem="wAf-HK-SPp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Pr9-sn-NF7"/>
                             <constraint firstItem="wAf-HK-SPp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="XQH-t6-g3O"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
