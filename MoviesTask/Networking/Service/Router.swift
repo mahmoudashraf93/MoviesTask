@@ -11,7 +11,7 @@ import Foundation
 class Router<EndPoint: EndPointType>: NetworkRouter {
     private var task: URLSessionTask?
     
-    func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
+    func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) -> URLSessionTask? {
         let session = URLSession.shared
         do {
             let request = try self.buildRequest(from: route)
@@ -23,6 +23,7 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
             completion(nil, nil, error)
         }
         self.task?.resume()
+        return self.task
     }
     
     func cancel() {
