@@ -31,7 +31,7 @@ class MoviesViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.setupTableView()
         self.setupViewModel()
-       
+        
     }
     func setupViewModel(){
         self.viewModel.getMovies()
@@ -40,7 +40,6 @@ class MoviesViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.moviesTableView.reloadData()
             }
-            
         }
     }
     func setupTableView(){
@@ -65,23 +64,31 @@ class MoviesViewController: UIViewController {
 
 extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if userMovies > 0 && section == 0 {
-            return userMovies
+        if self.viewModel.numberOfRowsForUserAddedMovies > 0 && section == 0 {
+            return self.viewModel.numberOfRowsForUserAddedMovies
         }
         return self.viewModel.numberOfRowsForMovies
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return userMovies > 0 ? 2 : 1
+        return self.viewModel.numberOfRowsForUserAddedMovies > 0 ? 2 : 1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if userMovies > 0 && section == 0 {
+        if self.viewModel.numberOfRowsForUserAddedMovies > 0 && section == 0 {
             return "My Movies"
         }
         return "Movies"
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if self.viewModel.numberOfRowsForUserAddedMovies > 0 && indexPath.section == 0 {
+            
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell",for: indexPath) as? MovieTableViewCell {
+                let movie = self.viewModel.userAdderMovies.value?[indexPath.row]
+                cell.movie = movie
+                return cell
+            }
+        }
         if indexPath.row == (self.viewModel.movies.value?.count ?? 0 - 1) && self.viewModel.isPaging {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell") as? LoadingTableViewCell {
                 self.viewModel.getMovies()
@@ -89,17 +96,16 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
         }
-        else {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell {
-                let movie = self.viewModel.movies.value?[indexPath.row]
-                cell.movie = movie
-                return cell
-            }
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell",for: indexPath) as? MovieTableViewCell {
+            let movie = self.viewModel.movies.value?[indexPath.row]
+            cell.movie = movie
+            return cell
         }
         return UITableViewCell()
     }
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell",for: indexPath) as? MovieTableViewCell {
+           
             cell.imgPoster.cancelTask()
         }
     }

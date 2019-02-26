@@ -12,7 +12,10 @@ class AddMovieViewController: UIViewController {
     
     var releaseDatePickerView: UIDatePicker!
     @IBOutlet weak var scrollView: UIScrollView!
-    
+    var imagePicker: ImagePicker!
+
+    @IBOutlet weak var imgPoster: UIImageView!
+    @IBOutlet weak var btnAddPoster: UIButton!
     @IBOutlet weak var tvOverview: UITextView!
     @IBOutlet weak var tfMovieName: UITextField!
     @IBOutlet weak var tfReleaseDate: UITextField!
@@ -20,6 +23,8 @@ class AddMovieViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         registerNotifications()
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+
         self.setupDatePicker()
     }
     
@@ -93,6 +98,10 @@ class AddMovieViewController: UIViewController {
         
         self.tfReleaseDate.text = dateString
     }
+    
+    @IBAction func btnAddPosterPressed(_ sender: Any) {
+        self.imagePicker.present(from: self.view)
+    }
     /*
     // MARK: - Navigation
 
@@ -103,4 +112,11 @@ class AddMovieViewController: UIViewController {
     }
     */
 
+}
+
+extension AddMovieViewController: ImagePickerDelegate {
+    func didSelect(image: UIImage?) {
+        self.btnAddPoster.isHidden = true
+        self.imgPoster.image = image
+    }
 }

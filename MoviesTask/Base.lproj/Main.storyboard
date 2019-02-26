@@ -88,6 +88,17 @@
                                                     <constraint firstAttribute="width" constant="100" id="Y8l-Uj-LaQ"/>
                                                 </constraints>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54l-nP-plH">
+                                                <rect key="frame" x="137.5" y="85" width="100" height="128"/>
+                                                <color key="backgroundColor" red="0.75686274509999996" green="0.78823529410000004" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <state key="normal" title="Add Poster">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnAddPosterPressed:" destination="XUg-iV-pAO" eventType="touchUpInside" id="Mie-0D-hI8"/>
+                                                </connections>
+                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ow7-2P-shC">
                                                 <rect key="frame" x="44" y="240" width="287" height="60"/>
                                                 <subviews>
@@ -218,11 +229,13 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="54l-nP-plH" firstAttribute="centerX" secondItem="VzI-o6-nYC" secondAttribute="centerX" id="041-Wd-k0K"/>
                                             <constraint firstItem="VzI-o6-nYC" firstAttribute="centerX" secondItem="rq9-SH-KPN" secondAttribute="centerX" id="4Fq-fm-MsP"/>
                                             <constraint firstAttribute="trailing" secondItem="xJK-Zo-0kf" secondAttribute="trailing" constant="44" id="5t3-5b-qSs"/>
                                             <constraint firstItem="ow7-2P-shC" firstAttribute="leading" secondItem="rq9-SH-KPN" secondAttribute="leading" constant="44" id="7In-52-2FJ"/>
                                             <constraint firstItem="VzI-o6-nYC" firstAttribute="top" secondItem="SwF-ib-KO1" secondAttribute="bottom" constant="21.5" id="7fs-HG-efs"/>
                                             <constraint firstAttribute="trailing" secondItem="pQq-Pc-DxN" secondAttribute="trailing" constant="55" id="7nU-9d-jac"/>
+                                            <constraint firstItem="54l-nP-plH" firstAttribute="height" secondItem="VzI-o6-nYC" secondAttribute="height" id="8fE-9c-g0o"/>
                                             <constraint firstItem="HkS-j7-cHF" firstAttribute="top" secondItem="xJK-Zo-0kf" secondAttribute="bottom" constant="15" id="9sA-sI-zHO"/>
                                             <constraint firstAttribute="trailing" secondItem="HkS-j7-cHF" secondAttribute="trailing" constant="44" id="DNb-Ah-HAO"/>
                                             <constraint firstItem="xJK-Zo-0kf" firstAttribute="top" secondItem="ow7-2P-shC" secondAttribute="bottom" constant="15" id="Drh-LT-YWK"/>
@@ -232,9 +245,11 @@
                                             <constraint firstAttribute="bottom" secondItem="pQq-Pc-DxN" secondAttribute="bottom" constant="8" id="TbF-Qj-cOU"/>
                                             <constraint firstItem="pQq-Pc-DxN" firstAttribute="leading" secondItem="rq9-SH-KPN" secondAttribute="leading" constant="55" id="XEl-7T-E1v"/>
                                             <constraint firstItem="ow7-2P-shC" firstAttribute="top" secondItem="VzI-o6-nYC" secondAttribute="bottom" constant="27" id="YjN-1Q-OQ1"/>
+                                            <constraint firstItem="54l-nP-plH" firstAttribute="width" secondItem="VzI-o6-nYC" secondAttribute="width" id="e7X-dY-hcV"/>
                                             <constraint firstItem="SwF-ib-KO1" firstAttribute="centerX" secondItem="rq9-SH-KPN" secondAttribute="centerX" id="fo6-XI-P1D"/>
                                             <constraint firstAttribute="trailing" secondItem="ow7-2P-shC" secondAttribute="trailing" constant="44" id="oZy-zU-I0b"/>
                                             <constraint firstItem="HkS-j7-cHF" firstAttribute="leading" secondItem="rq9-SH-KPN" secondAttribute="leading" constant="44" id="q4D-fD-61f"/>
+                                            <constraint firstItem="54l-nP-plH" firstAttribute="centerY" secondItem="VzI-o6-nYC" secondAttribute="centerY" id="vHJ-la-Ng6"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -258,6 +273,8 @@
                         <viewLayoutGuide key="safeArea" id="fmF-oD-NbF"/>
                     </view>
                     <connections>
+                        <outlet property="btnAddPoster" destination="54l-nP-plH" id="JZR-hz-HPQ"/>
+                        <outlet property="imgPoster" destination="VzI-o6-nYC" id="bWt-fL-oHB"/>
                         <outlet property="scrollView" destination="Hot-Ga-R0u" id="q5U-vi-gys"/>
                         <outlet property="tfMovieName" destination="VhQ-Cx-Nti" id="0F6-Ng-gMi"/>
                         <outlet property="tfReleaseDate" destination="a9L-BF-UOK" id="8BV-OF-0Kf"/>

@@ -24,7 +24,7 @@ class MovieTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    func setupViews(){
+    func setupViews(isUserAdded: Bool = false){
         self.lblTitle.text = self.movie?.title ?? ""
         self.lblOverview.text = self.movie?.overview ?? ""
         self.lblReleaseDate.text = self.movie?.releaseDate ?? ""
@@ -33,6 +33,7 @@ class MovieTableViewCell: UITableViewCell {
             self.imgPoster.imageFromServerURL(urlString: imgUrl)
         }
         else {
+            if isUserAdded { self.imgPoster.image = UIImage() }
             self.imgPoster.image = UIImage(named:"placeholder")
         }
     }
