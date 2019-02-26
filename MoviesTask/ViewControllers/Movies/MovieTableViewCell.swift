@@ -14,7 +14,7 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var lblOverview: UILabel!
     @IBOutlet weak var lblReleaseDate: UILabel!
     
-    var movie: Movie? {
+    weak var movie: Movie? {
         didSet {
           self.setupViews()
         }
