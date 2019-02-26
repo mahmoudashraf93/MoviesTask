@@ -100,9 +100,9 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell {
+        if let movieCell = cell as? MovieTableViewCell {
            let urlString = self.viewModel.movies.value?[indexPath.row].posterPath
-//            cell.imgPoster.cancelTask(for: "\(urlString ?? "")")
+            movieCell.imgPoster.cancelTask(for: "\(urlString ?? "")")
         }
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
