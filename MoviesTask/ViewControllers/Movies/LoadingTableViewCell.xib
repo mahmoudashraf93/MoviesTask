@@ -24,8 +24,9 @@
                     </activityIndicatorView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="N2G-Xf-v0Q" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="F3z-GM-Jad"/>
+                    <constraint firstItem="N2G-Xf-v0Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="Cb0-Ku-4pQ"/>
                     <constraint firstItem="N2G-Xf-v0Q" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="OQH-vJ-3AX"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="N2G-Xf-v0Q" secondAttribute="bottom" constant="1" id="mWt-hd-qPi"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

@@ -7,23 +7,23 @@
 //
 import Foundation
 import UIKit
-protocol ImageDownloadable {
-    var task: URLSessionTask? {get set}
-    func imageFromServerURL(urlString: String)
-}
+//protocol ImageDownloadable {
+//    var task: [String: URLSessionTask] {get set}
+//    func imageFromServerURL(urlString: String)
+//}
 let imageCache = NSCache<NSString, UIImage>()
 
-extension UIImageView: ImageDownloadable {
-    struct Holder {
-        static var task: URLSessionTask?
+extension UIImageView {
+    struct TaskHolder {
+        static  var task = [String: URLSessionTask]()
     }
     
-    var task: URLSessionTask? {
+    var task: [String: URLSessionTask] {
         get {
-            return Holder.task
+            return TaskHolder.task
         }
         set {
-            Holder.task = newValue
+            TaskHolder.task = newValue
         }
     }
     
@@ -35,25 +35,28 @@ extension UIImageView: ImageDownloadable {
             }
         }
         else {
-            self.task = WebMovieRepository().downloadImage(imageUrl: urlString) { (data, error) in
-                DispatchQueue.main.async(execute: { () -> Void in
+            weak var task = WebMovieRepository().downloadImage(imageUrl: urlString) { (data, error) in
+                DispatchQueue.main.async{ [weak self] in
                     
                     if error == "cancelled" {
                         return
                     }
                     if error != nil {
-                        self.image = UIImage(named: "placeholder")
+                        self?.image = UIImage(named: "placeholder")
                         return
                     }
                     let image = UIImage(data: data!)
-                    self.image = image
+                    self?.image = image
                     imageCache.setObject(image!, forKey: urlString as NSString)
-                })
+                }
             }
+            self.task[urlString] = task
         }
     }
     
-    public func cancelTask(){
-        self.task?.cancel()
+    public func cancelTask(for urlString: String){
+      
+        self.task[urlString]?.cancel()
+        self.task.removeValue(forKey: urlString)
     }
 }
