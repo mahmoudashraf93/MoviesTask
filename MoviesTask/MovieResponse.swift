@@ -11,50 +11,45 @@ import Foundation
 class MovieResponse: Codable {
     let page, totalResults, totalPages: Int?
     let movies: [Movie]?
-    
+
     enum CodingKeys: String, CodingKey {
         case page
         case totalResults = "total_results"
         case totalPages = "total_pages"
         case movies = "results"
     }
-    
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        page = try container.decode(Int.self, forKey: .page)
+        totalResults = try container.decode(Int.self, forKey: .totalResults)
+        totalPages = try container.decode(Int.self, forKey: .totalPages)
+        movies = try container.decode([Movie].self, forKey: .movies)
+        
+    }
 
 }
 
 class Movie: Codable {
-    let voteCount, id: Int?
-    let video: Bool?
-    let voteAverage: Double?
     let title: String?
-    let popularity: Double?
     let posterPath: String?
-    let originalLanguage: OriginalLanguage?
-    let originalTitle: String?
-    let genreIDS: [Int]?
-    let backdropPath: String?
-    let adult: Bool?
     let overview, releaseDate: String?
-    
+
     enum CodingKeys: String, CodingKey {
-        case voteCount = "vote_count"
-        case id, video
-        case voteAverage = "vote_average"
-        case title, popularity
+     
+        case title
         case posterPath = "poster_path"
-        case originalLanguage = "original_language"
-        case originalTitle = "original_title"
-        case genreIDS = "genre_ids"
-        case backdropPath = "backdrop_path"
-        case adult, overview
+        case overview
         case releaseDate = "release_date"
     }
-    
-}
-
-enum OriginalLanguage: String, Codable {
-    case cn = "cn"
-    case en = "en"
-    case ru = "ru"
+    required init(from decoder: Decoder) throws {
+        let movieContainer = try decoder.container(keyedBy: CodingKeys.self)
+        
+        posterPath = try movieContainer.decode(String.self, forKey: .posterPath)
+        title = try movieContainer.decode(String.self, forKey: .title)
+        releaseDate = try movieContainer.decode(String.self, forKey: .releaseDate)
+        overview = try movieContainer.decode(String.self, forKey: .overview)
+    }
 }
 
