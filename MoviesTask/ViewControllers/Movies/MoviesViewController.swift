@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class MoviesViewController: UIViewController {
     
     @IBOutlet weak var moviesTableView: UITableView!
@@ -21,17 +22,27 @@ class MoviesViewController: UIViewController {
             }
         }
     }
+    lazy var viewModel: MoviesViewModel = {
+        let moviesViewModel = MoviesViewModel()
+        return moviesViewModel
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.setupTableView()
-        
-        let webRepo = WebMovieRepository().get(page: 1) { (movie, error) in
+        self.setupViewModel()
+       
+    }
+    func setupViewModel(){
+        self.viewModel.getMovies()
+        self.viewModel.movies.addObserver(self) { [weak self] in
             
-            self.movie = movie
+            DispatchQueue.main.async {
+                self?.moviesTableView.reloadData()
+            }
+            
         }
     }
-    
     func setupTableView(){
         self.moviesTableView.delegate = self
         self.moviesTableView.dataSource = self
@@ -57,7 +68,7 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         if userMovies > 0 && section == 0 {
             return userMovies
         }
-        return self.movie?.movies?.count ?? 0
+        return self.viewModel.numberOfRowsForMovies
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -71,16 +82,16 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         return "Movies"
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == self.movie?.movies?.count ?? 0 - 1{
+        if indexPath.row == (self.viewModel.movies.value?.count ?? 0 - 1) && self.viewModel.isPaging {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell") as? LoadingTableViewCell {
-                
+                self.viewModel.getMovies()
                 cell.loadingActivityIndicator.startAnimating()
                 return cell
             }
         }
         else {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell {
-                let movie = self.movie?.movies?[indexPath.row]
+                let movie = self.viewModel.movies.value?[indexPath.row]
                 cell.movie = movie
                 return cell
             }

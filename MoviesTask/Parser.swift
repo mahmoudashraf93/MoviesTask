@@ -13,7 +13,7 @@ protocol Parcelable {
     func parse(from data: Data) throws -> ModelType
 }
 
-class Parser<T: Codable>: Parcelable {
+class Parser<T: Decodable>: Parcelable {
     
     private let jsonDecoder: JSONDecoder
     
