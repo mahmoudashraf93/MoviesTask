@@ -21,33 +21,35 @@ class AddMovieViewController: UIViewController {
     @IBOutlet weak var tvOverview: UITextView!
     @IBOutlet weak var tfMovieName: UITextField!
     @IBOutlet weak var tfReleaseDate: UITextField!
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         registerNotifications()
-        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
-        
-            let width = CGFloat(1.0)
-            tvOverview.layer.borderColor = UIColor.white.cgColor
-            tvOverview.layer.borderWidth = width
-            tvOverview.clipsToBounds = true
-            tvOverview.layer.masksToBounds = false
-            
-        self.setupDatePicker()
+        self.setupViews()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unregisterNotifications()
     }
-    
+    func setupViews(){
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        
+        let width = CGFloat(1.0)
+        tvOverview.layer.borderColor = UIColor.white.cgColor
+        tvOverview.layer.borderWidth = width
+        tvOverview.clipsToBounds = true
+        tvOverview.layer.masksToBounds = false
+        
+        self.setupDatePicker()
+    }
     @IBAction func btnAddPressed(_ sender: Any) {
         
         var imageData = UIImage(named: "placeholder")!.pngData()
         if let postedImage = self.imgPoster.image {
             imageData = postedImage.pngData()
         }
-    // validate input
+        // validate input
         let movie = UserAddedMoviesListViewModel(titleText: self.tfMovieName.text!, releaseDateText: self.tfReleaseDate.text, overviewText: self.tvOverview.text, imageData: imageData)
         self.delegate?.didAdd(movie)
         self.dismiss(animated: true, completion: nil)
@@ -62,8 +64,8 @@ class AddMovieViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-   @objc func keyboardDidShow(notification: NSNotification) {
-    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+    @objc func keyboardDidShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets
@@ -90,21 +92,21 @@ class AddMovieViewController: UIViewController {
         self.tfReleaseDate.inputAccessoryView = toolBar
         self.tfMovieName.inputAccessoryView = toolBar
         self.tvOverview.inputAccessoryView = toolBar
-
-
+        
+        
     }
     
     @objc func toolbarBtnPressed(){
-       
+        
         if self.tfMovieName.isFirstResponder {
-//            self.tfMovieName.resignFirstResponder()
+            //            self.tfMovieName.resignFirstResponder()
             self.tfReleaseDate.becomeFirstResponder()
-
+            
         }
         else if tfReleaseDate.isFirstResponder {
-//            self.tfReleaseDate.resignFirstResponder()
+            //            self.tfReleaseDate.resignFirstResponder()
             self.tvOverview.becomeFirstResponder()
-
+            
         }
         else if tvOverview.isFirstResponder {
             self.tvOverview.resignFirstResponder()
@@ -125,15 +127,15 @@ class AddMovieViewController: UIViewController {
         self.imagePicker.present(from: self.view)
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension AddMovieViewController: ImagePickerDelegate {
