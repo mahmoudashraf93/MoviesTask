@@ -7,10 +7,8 @@
 //
 import Foundation
 import UIKit
-//protocol ImageDownloadable {
-//    var task: [String: URLSessionTask] {get set}
-//    func imageFromServerURL(urlString: String)
-//}
+
+
 let imageCache = NSCache<NSString, UIImage>()
 
 extension UIImageView {
@@ -18,7 +16,7 @@ extension UIImageView {
         static  var task = [String: URLSessionTask]()
     }
     
-    var task: [String: URLSessionTask] {
+    var taskStorage: [String: URLSessionTask] {
         get {
             return TaskHolder.task
         }
@@ -27,7 +25,7 @@ extension UIImageView {
         }
     }
     
-    public func imageFromServerURL(urlString: String) {
+    public func image(from urlString: String) {
         self.image = nil
         if let cachedImage = imageCache.object(forKey: urlString as NSString) {
             DispatchQueue.main.async{
@@ -36,28 +34,42 @@ extension UIImageView {
         }
         else {
             weak var task = WebMovieRepository().downloadImage(imageUrl: urlString) { (data, error) in
-                DispatchQueue.main.async{ [weak self] in
+                if error == "cancelled" {
+                    return
+                }
+                DispatchQueue.main.async{ [unowned self] in
                     
-                    if error == "cancelled" {
-                        return
-                    }
                     if error != nil {
-                        self?.image = UIImage(named: "placeholder")
+                        self.image = UIImage(named: "placeholder")
                         return
                     }
-                    let image = UIImage(data: data!)
                     
-                    self?.image = image
-                    imageCache.setObject(image!, forKey: urlString as NSString)
+                    guard let imageData = data else {
+                        self.image = UIImage(named: "placeholder")
+                        return
+                    }
+                    guard let image = UIImage(data: imageData) else {
+                        self.image = UIImage(named: "placeholder")
+                        return
+                    }
+                    UIView.transition(with: self,
+                                      duration: 0.3,
+                                      options: .transitionCrossDissolve,
+                                      animations: {
+                                        self.image = image
+                                        
+                    },
+                                      completion: nil)
+                    imageCache.setObject(image, forKey: urlString as NSString)
                 }
             }
-            self.task[urlString] = task
+            self.taskStorage[urlString] = task
         }
     }
     
     public func cancelTask(for urlString: String){
-      
-        self.task[urlString]?.cancel()
-        self.task.removeValue(forKey: urlString)
+        
+        self.taskStorage[urlString]?.cancel()
+        self.taskStorage.removeValue(forKey: urlString)
     }
 }
