@@ -52,9 +52,9 @@
                     <constraint firstItem="omH-1l-bit" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Bcc-wt-kV7"/>
                     <constraint firstItem="o87-3g-W7z" firstAttribute="leading" secondItem="omH-1l-bit" secondAttribute="trailing" constant="8" id="CgF-sN-xa0"/>
                     <constraint firstItem="omH-1l-bit" firstAttribute="top" secondItem="0w2-5X-KpD" secondAttribute="bottom" constant="6" id="E96-NI-Clb"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="omH-1l-bit" secondAttribute="bottom" constant="8" id="F5F-99-pBb"/>
                     <constraint firstItem="o87-3g-W7z" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="HO6-tx-owA"/>
                     <constraint firstAttribute="trailing" secondItem="s70-At-epe" secondAttribute="trailing" constant="16" id="PT3-Da-THK"/>
-                    <constraint firstAttribute="bottom" secondItem="omH-1l-bit" secondAttribute="bottom" constant="8" id="Yj4-l5-Dai"/>
                     <constraint firstItem="s70-At-epe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="omH-1l-bit" secondAttribute="trailing" constant="8" id="Z2n-FE-IoR"/>
                     <constraint firstItem="0w2-5X-KpD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="dNs-ta-4vd"/>
                     <constraint firstItem="s70-At-epe" firstAttribute="top" relation="greaterThanOrEqual" secondItem="o87-3g-W7z" secondAttribute="bottom" constant="16.5" id="h1C-JV-8yI"/>
