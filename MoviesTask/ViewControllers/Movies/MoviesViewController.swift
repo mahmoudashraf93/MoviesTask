@@ -130,3 +130,25 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
 }
+extension MoviesViewController {
+    func startLoading() {
+        
+        let indicator = UIActivityIndicatorView(frame: loadingView.view.bounds)
+        indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        loadingView.view.addSubview(indicator)
+        indicator.style = .gray
+        indicator.isUserInteractionEnabled = false
+        indicator.startAnimating()
+        
+        DispatchQueue.main.async {
+            self.present(self.loadingView, animated: true, completion: nil)
+        }
+    }
+    
+    func stopLoading(completion: AlertViewAction? = nil){
+        DispatchQueue.main.async {
+            self.loadingView.dismiss(animated: true, completion: completion)
+        }
+    }
+}
