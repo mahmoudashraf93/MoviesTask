@@ -30,7 +30,7 @@ class MovieTableViewCell: UITableViewCell {
         self.lblReleaseDate.text = self.movie?.releaseDate ?? ""
 
         if let imgUrl = self.movie?.posterPath {
-            self.imgPoster.imageFromServerURL(urlString: imgUrl)
+            self.imgPoster.image(from: imgUrl)
             return
         }
          if let imgData = self.movie?.imagePoster {
