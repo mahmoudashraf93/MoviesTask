@@ -16,6 +16,7 @@ extension MoviesViewController {
         indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         loadingView.view.addSubview(indicator)
+        indicator.style = .gray
         indicator.isUserInteractionEnabled = false
         indicator.startAnimating()
         
@@ -31,9 +32,9 @@ extension MoviesViewController {
     }
 }
 extension UIViewController {
-    typealias AlertViewAction = (() -> Void)
+   public typealias AlertViewAction = (() -> Void)
 
-    func presentAlertView(withTitle title: String, message: String, cancelActionTitle: String?, preferredStyle: UIAlertController.Style = .alert, confirmActionTitle: String, cancelAction: AlertViewAction?, confirmAction: AlertViewAction?) {
+   public func presentAlertView(withTitle title: String, message: String, cancelActionTitle: String?, preferredStyle: UIAlertController.Style = .alert, confirmActionTitle: String, cancelAction: AlertViewAction?, confirmAction: AlertViewAction?) {
         
         let alertView = UIAlertController.init(title: title, message: message, preferredStyle: preferredStyle)
         
@@ -60,10 +61,10 @@ extension UIViewController {
             }
             
             alertView.addAction(cancelAlertAction)
-            alertView.addAction(confirmAlertAction)
 
         }
-        
+        alertView.addAction(confirmAlertAction)
+
         self.present(alertView, animated: true, completion: nil)
     }
 }
