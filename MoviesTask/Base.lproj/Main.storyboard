@@ -211,7 +211,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQq-Pc-DxN">
-                                                <rect key="frame" x="55" y="609" width="265" height="50"/>
+                                                <rect key="frame" x="55" y="601" width="265" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="8oZ-Ek-vfe"/>
@@ -230,7 +230,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWE-k2-gOC">
-                                                <rect key="frame" x="8" y="16" width="80" height="35"/>
+                                                <rect key="frame" x="8" y="30" width="80" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="F4M-c4-Dz6"/>
                                                     <constraint firstAttribute="width" constant="80" id="nDZ-FQ-FpH"/>
@@ -256,11 +256,11 @@
                                             <constraint firstItem="HkS-j7-cHF" firstAttribute="top" secondItem="xJK-Zo-0kf" secondAttribute="bottom" constant="15" id="9sA-sI-zHO"/>
                                             <constraint firstAttribute="trailing" secondItem="HkS-j7-cHF" secondAttribute="trailing" constant="44" id="DNb-Ah-HAO"/>
                                             <constraint firstItem="xJK-Zo-0kf" firstAttribute="top" secondItem="ow7-2P-shC" secondAttribute="bottom" constant="15" id="Drh-LT-YWK"/>
-                                            <constraint firstItem="pQq-Pc-DxN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="HkS-j7-cHF" secondAttribute="bottom" constant="19" id="Ewy-Ax-E3L"/>
-                                            <constraint firstItem="qWE-k2-gOC" firstAttribute="top" secondItem="rq9-SH-KPN" secondAttribute="top" constant="16" id="FRo-TQ-dKv"/>
+                                            <constraint firstItem="pQq-Pc-DxN" firstAttribute="top" secondItem="HkS-j7-cHF" secondAttribute="bottom" constant="19" id="Ewy-Ax-E3L"/>
+                                            <constraint firstItem="qWE-k2-gOC" firstAttribute="top" secondItem="rq9-SH-KPN" secondAttribute="top" constant="30" id="FRo-TQ-dKv"/>
                                             <constraint firstItem="SwF-ib-KO1" firstAttribute="top" secondItem="rq9-SH-KPN" secondAttribute="top" constant="38" id="Icd-Ut-t8a"/>
                                             <constraint firstItem="xJK-Zo-0kf" firstAttribute="leading" secondItem="rq9-SH-KPN" secondAttribute="leading" constant="44" id="P28-gF-7IV"/>
-                                            <constraint firstAttribute="bottom" secondItem="pQq-Pc-DxN" secondAttribute="bottom" constant="8" id="TbF-Qj-cOU"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pQq-Pc-DxN" secondAttribute="bottom" constant="16" id="VaY-kd-9wN"/>
                                             <constraint firstItem="pQq-Pc-DxN" firstAttribute="leading" secondItem="rq9-SH-KPN" secondAttribute="leading" constant="55" id="XEl-7T-E1v"/>
                                             <constraint firstItem="ow7-2P-shC" firstAttribute="top" secondItem="VzI-o6-nYC" secondAttribute="bottom" constant="27" id="YjN-1Q-OQ1"/>
                                             <constraint firstItem="qWE-k2-gOC" firstAttribute="leading" secondItem="rq9-SH-KPN" secondAttribute="leading" constant="8" id="daw-Z9-PyX"/>

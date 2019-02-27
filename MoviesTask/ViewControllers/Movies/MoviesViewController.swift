@@ -14,7 +14,7 @@ class MoviesViewController: UIViewController {
     @IBOutlet weak var moviesTableView: UITableView!
     lazy var loadingView : UIAlertController = {
         
-       return UIAlertController(title: "Loading ...", message: "Please wait", preferredStyle: .alert)
+       return UIAlertController(title: "", message: nil, preferredStyle: .alert)
     }()
     
     let pageSize = 20

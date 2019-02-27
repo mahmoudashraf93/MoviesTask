@@ -11,17 +11,14 @@ import UIKit
 
 extension MoviesViewController {
     func startLoading() {
-        //create an alert controller
-        
-        
-        //create an activity indicator
+     
         let indicator = UIActivityIndicatorView(frame: loadingView.view.bounds)
         indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        //add the activity indicator as a subview of the alert controller's view
         loadingView.view.addSubview(indicator)
-        indicator.isUserInteractionEnabled = false // required otherwise if there buttons in the UIAlertController you will not be able to press them
+        indicator.isUserInteractionEnabled = false
         indicator.startAnimating()
+        
         DispatchQueue.main.async {
         self.present(self.loadingView, animated: true, completion: nil)
         }
@@ -30,7 +27,6 @@ extension MoviesViewController {
     func stopLoading(){
         DispatchQueue.main.async {
             self.loadingView.dismiss(animated: true, completion: nil)
-
         }
     }
 }
