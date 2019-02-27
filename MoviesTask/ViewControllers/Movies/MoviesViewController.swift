@@ -14,11 +14,8 @@ class MoviesViewController: UIViewController {
     @IBOutlet weak var moviesTableView: UITableView!
     lazy var loadingView : UIAlertController = {
         
-       return UIAlertController(title: "", message: nil, preferredStyle: .alert)
+        return UIAlertController(title: "", message: nil, preferredStyle: .alert)
     }()
-    
-    let pageSize = 20
-    let userMovies = 0
     lazy var viewModel: MoviesViewModel = {
         let moviesViewModel = MoviesViewModel()
         return moviesViewModel
@@ -33,18 +30,23 @@ class MoviesViewController: UIViewController {
     func setupViewModel(){
         self.startLoading()
         self.viewModel.getMovies()
-       
-        self.viewModel.userAdderMovies.addObserver(self) { [weak self] in
-           
+        
+        self.viewModel.reloadTableviewClosure = { [unowned self] in
+            self.stopLoading()
             DispatchQueue.main.async {
-                self?.moviesTableView.reloadData()
+                self.moviesTableView.reloadData()
             }
         }
-        self.viewModel.movies.addObserver(self) { [weak self] in
-            self?.stopLoading()
-            DispatchQueue.main.async {
-                self?.moviesTableView.reloadData()
-            }
+        
+        self.viewModel.failureClosure = { [unowned self] (error) in
+            self.stopLoading(completion: {
+               
+                self.presentAlertView(withTitle: "Failed", message: error, cancelActionTitle: "Cancel", confirmActionTitle: "Retry", cancelAction: nil, confirmAction: {
+                    self.startLoading()
+                    self.viewModel.getMovies()
+            })
+           
+        })
         }
     }
     
@@ -81,14 +83,14 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if self.viewModel.numberOfRowsForUserAddedMovies > 0 && section == 0 {
+        if self.viewModel.isCellForMyMoviesSection(indexPath: IndexPath(row: 0, section: section)){
             return "My Movies"
         }
         return "Movies"
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-        if indexPath.row == (self.viewModel.movies.value?.count ?? 0 - 1) && self.viewModel.isPaging {
+        
+        if self.viewModel.shouldShowLoadingRow(indexPath: indexPath) {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingTableViewCell") as? LoadingTableViewCell {
                 self.viewModel.getMovies()
                 cell.loadingActivityIndicator.startAnimating()
@@ -96,25 +98,24 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell",for: indexPath) as? MovieTableViewCell {
-            var movie : Movie?
-            if self.viewModel.numberOfRowsForUserAddedMovies > 0 && indexPath.section == 0 {
-                movie = self.viewModel.userAdderMovies.value?[indexPath.row]
-                cell.movie = movie
+            if self.viewModel.isCellForMyMoviesSection(indexPath: indexPath) {
+                let movieCellVM = self.viewModel.getUserAddedMovieCellViewModel(at: indexPath.row)
+                cell.userAdddedMovieCellViewModel = movieCellVM
                 return cell
                 
             }
-            movie = self.viewModel.movies.value?[indexPath.row]
-            cell.movie = movie
+            let movieCellVM = self.viewModel.getWebMovieCellViewModel(at: indexPath.row)
+            cell.webMovieCellViewModel = movieCellVM
             return cell
         }
-       
+        
         
         return UITableViewCell()
     }
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let movieCell = cell as? MovieTableViewCell {
-           let urlString = self.viewModel.movies.value?[indexPath.row].posterPath
-            movieCell.imgPoster.cancelTask(for: "\(urlString ?? "")")
+            let movieCellVM = self.viewModel.getWebMovieCellViewModel(at: indexPath.row)
+            movieCell.imgPoster.cancelTask(for: "\(movieCellVM.imagePath ?? "")")
         }
     }
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

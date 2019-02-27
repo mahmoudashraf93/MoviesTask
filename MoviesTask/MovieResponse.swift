@@ -35,19 +35,12 @@ class Movie: Codable {
     var title: String?
     var posterPath: String?
     var overview, releaseDate: String?
-    var imagePoster: Data?
     enum CodingKeys: String, CodingKey {
      
         case title
         case posterPath = "poster_path"
         case overview
         case releaseDate = "release_date"
-    }
-    init(title: String?, overview: String?, releaseDate: String?, imagePoster: Data?) {
-        self.title = title
-        self.overview = overview
-        self.releaseDate = releaseDate
-        self.imagePoster = imagePoster
     }
     required init(from decoder: Decoder) throws {
         let movieContainer = try decoder.container(keyedBy: CodingKeys.self)

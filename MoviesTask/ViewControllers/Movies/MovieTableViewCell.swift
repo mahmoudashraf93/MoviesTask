@@ -14,9 +14,28 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var lblOverview: UILabel!
     @IBOutlet weak var lblReleaseDate: UILabel!
     
-    weak var movie: Movie? {
+    var webMovieCellViewModel: WebMoviesListViewModel? {
         didSet {
-          self.setupViews()
+            self.lblTitle.text = webMovieCellViewModel?.titleText
+            self.lblOverview.text = webMovieCellViewModel?.overviewText
+            self.lblReleaseDate.text = webMovieCellViewModel?.releaseDateText
+            self.imgPoster.image(from: webMovieCellViewModel?.imagePath ?? "")
+        }
+    }
+    var userAdddedMovieCellViewModel: UserAddedMoviesListViewModel? {
+        didSet {
+            self.lblTitle.text = userAdddedMovieCellViewModel?.titleText
+            self.lblOverview.text = userAdddedMovieCellViewModel?.overviewText
+            self.lblReleaseDate.text = userAdddedMovieCellViewModel?.releaseDateText
+           
+            guard let imageData = userAdddedMovieCellViewModel?.imageData else {
+                return
+            }
+           
+            guard let posterImage = UIImage(data: imageData) else {
+                return
+            }
+            self.imgPoster.image = posterImage
         }
     }
     
@@ -24,25 +43,9 @@ class MovieTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    func setupViews(){
-        self.lblTitle.text = self.movie?.title ?? ""
-        self.lblOverview.text = self.movie?.overview ?? ""
-        self.lblReleaseDate.text = self.movie?.releaseDate ?? ""
-
-        if let imgUrl = self.movie?.posterPath {
-            self.imgPoster.image(from: imgUrl)
-            return
-        }
-         if let imgData = self.movie?.imagePoster {
-            self.imgPoster.image = UIImage(data: imgData)
-            return
-        }
-        self.imgPoster.image = UIImage(named:"placeholder")
-
-    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     

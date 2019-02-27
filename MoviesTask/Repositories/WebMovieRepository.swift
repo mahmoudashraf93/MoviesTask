@@ -21,7 +21,7 @@ class WebMovieRepository<ResponseType: MovieResponse>: WebRepository {
         
         self.router.request(.discover(page: page), completion: { (data, response, error) in
             
-            let error = ResponseHandler.validateResponse(response, data: data)
+            let error = ResponseHandler.validateResponse(response, data: data, error: error)
             if let responseError = error {
                 completion(nil, responseError)
             }

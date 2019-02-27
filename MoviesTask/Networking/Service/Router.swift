@@ -11,6 +11,7 @@ import Foundation
 class Router<EndPoint: EndPointType>: NetworkRouter {
     private var task: URLSessionTask?
     
+    @discardableResult
     func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) -> URLSessionTask? {
         let session = URLSession.shared
         do {

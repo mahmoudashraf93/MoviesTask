@@ -8,7 +8,7 @@
 
 import UIKit
 protocol AddMovieVCDelegate {
-    func didAdd(_ movie: Movie )
+    func didAdd(_ movie: UserAddedMoviesListViewModel )
 }
 class AddMovieViewController: UIViewController {
     
@@ -47,7 +47,8 @@ class AddMovieViewController: UIViewController {
         if let postedImage = self.imgPoster.image {
             imageData = postedImage.pngData()
         }
-        let movie = Movie(title: self.tfMovieName.text, overview: self.tvOverview.text, releaseDate: self.tfReleaseDate.text, imagePoster: imageData)
+    // validate input
+        let movie = UserAddedMoviesListViewModel(titleText: self.tfMovieName.text!, releaseDateText: self.tfReleaseDate.text, overviewText: self.tvOverview.text, imageData: imageData)
         self.delegate?.didAdd(movie)
         self.dismiss(animated: true, completion: nil)
     }
