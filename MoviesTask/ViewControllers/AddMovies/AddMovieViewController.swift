@@ -26,7 +26,13 @@ class AddMovieViewController: UIViewController {
         super.viewWillAppear(animated)
         registerNotifications()
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
-
+        
+            let width = CGFloat(1.0)
+            tvOverview.layer.borderColor = UIColor.white.cgColor
+            tvOverview.layer.borderWidth = width
+            tvOverview.clipsToBounds = true
+            tvOverview.layer.masksToBounds = false
+            
         self.setupDatePicker()
     }
     
