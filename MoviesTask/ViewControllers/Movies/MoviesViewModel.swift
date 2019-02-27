@@ -10,63 +10,101 @@ import Foundation
 
 class MoviesViewModel {
     
-    var movies : DynamicValue<[Movie]?> = DynamicValue<[Movie]?>(nil)
-    var userAdderMovies : DynamicValue<[Movie]?> = DynamicValue<[Movie]?>(nil)
+    private var webMovies: [WebMoviesListViewModel] = [WebMoviesListViewModel]() {
+        didSet{
+            // reload tableView
+            self.reloadTableviewClosure?()
+        }
+    }
+    private var userAddedMovies: [UserAddedMoviesListViewModel] = [UserAddedMoviesListViewModel]() {
+        didSet{
+            // reload tableview
+            self.reloadTableviewClosure?()
+
+        }
+    }
+    var reloadTableviewClosure: (()->())?
+    var failureClosure: ((String)->())?
+
     let webMoviesRepo: WebMovieRepository<MovieResponse>
     private var pageNumber = 1
     private var totalPages = 1
-     var isPaging: Bool {
+   
+    var isPaging: Bool {
         return pageNumber < self.totalPages
     }
-     var numberOfRowsForMovies: Int {
-        return isPaging ? (self.movies.value?.count ?? 0) + 1 : self.movies.value?.count ?? 0
+    var numberOfRowsForMovies: Int {
+        return isPaging ? self.webMovies.count + 1 : self.webMovies.count
     }
-     var numberOfRowsForUserAddedMovies: Int {
-        return self.userAdderMovies.value?.count ?? -1
+    var numberOfRowsForUserAddedMovies: Int {
+        return self.userAddedMovies.count
     }
-    init(webMoviesRepo: WebMovieRepository<MovieResponse> = WebMovieRepository(), movies: DynamicValue<[Movie]?> = DynamicValue<[Movie]?>(nil), userAddedMoves: DynamicValue<[Movie]?> = DynamicValue<[Movie]?>(nil)  ) {
+    init(webMoviesRepo: WebMovieRepository<MovieResponse> = WebMovieRepository()) {
         self.webMoviesRepo = webMoviesRepo
-        self.movies = movies
-        self.userAdderMovies = userAddedMoves
     }
     
-    func getMovies(for page: Int = 1){
+   public func getMovies(for page: Int = 1){
         self.webMoviesRepo.get(page: self.pageNumber) {[unowned self](movieResponse, error) in
             
             guard error == nil else {
+                self.failureClosure?(error ?? "")
                 return
             }
             self.totalPages = movieResponse?.totalPages ?? 0
+            
             guard let movies = movieResponse?.movies else {
                 return
             }
-//            let movie = Movie(title: "test", overview: "hahahahahahahah", releaseDate: "28-9-1993", imagePoster: nil)
-//            self.userAdderMovies.value = [movie]
-            if self.pageNumber == 1 {
-                self.movies.value = movies
-            }
-            else {
-                self.movies.value?.append(contentsOf: movies)
-
-            }
            
+            self.mapFetchedMovies(movies: movies)
             self.pageNumber += 1
             
         }
     }
+    public func getWebMovieCellViewModel(at index: Int) -> WebMoviesListViewModel {
+       return self.webMovies[index]
+    }
+    public func getUserAddedMovieCellViewModel(at index: Int) -> UserAddedMoviesListViewModel {
+        return self.userAddedMovies[index]
+    }
+    public func shouldShowLoadingRow(indexPath: IndexPath) -> Bool {
+       return indexPath.row == self.webMovies.count && self.isPaging && !self.isCellForMyMoviesSection(indexPath:indexPath)
+    }
+    public func isCellForMyMoviesSection (indexPath: IndexPath) -> Bool {
+        return self.numberOfRowsForUserAddedMovies > 0 && indexPath.section == 0
+    }
+    private func mapFetchedMovies(movies: [Movie]){
+        
+        let mappedMovies = movies.map {
+            WebMoviesListViewModel(titleText: $0.title ?? "",
+                                   releaseDateText: $0.releaseDate ?? "",
+                                   overviewText: $0.overview ?? "",
+                                   imagePath: $0.posterPath ?? "")
+        }
+        self.webMovies.append(contentsOf: mappedMovies)
+    
+    }
 }
 
 extension MoviesViewModel: AddMovieVCDelegate {
-    func didAdd(_ movie: Movie) {
-        if self.userAdderMovies.value == nil {
-            self.userAdderMovies.value = [movie]
-            return
-        }
-        else {
-            self.userAdderMovies.value?.append(movie)
-            return
-        }
+    func didAdd(_ movie: UserAddedMoviesListViewModel) {
+        
+       self.userAddedMovies.append(movie)
     }
     
     
+}
+
+
+struct WebMoviesListViewModel {
+    let titleText: String
+    let releaseDateText: String
+    let overviewText: String
+    let imagePath: String?
+}
+struct UserAddedMoviesListViewModel {
+    let titleText: String
+    let releaseDateText: String?
+    let overviewText: String?
+    let imageData: Data?
 }

@@ -24,9 +24,46 @@ extension MoviesViewController {
         }
     }
     
-    func stopLoading(){
+    func stopLoading(completion: AlertViewAction? = nil){
         DispatchQueue.main.async {
-            self.loadingView.dismiss(animated: true, completion: nil)
+            self.loadingView.dismiss(animated: true, completion: completion)
         }
+    }
+}
+extension UIViewController {
+    typealias AlertViewAction = (() -> Void)
+
+    func presentAlertView(withTitle title: String, message: String, cancelActionTitle: String?, preferredStyle: UIAlertController.Style = .alert, confirmActionTitle: String, cancelAction: AlertViewAction?, confirmAction: AlertViewAction?) {
+        
+        let alertView = UIAlertController.init(title: title, message: message, preferredStyle: preferredStyle)
+        
+        
+        
+        let confirmAlertAction = UIAlertAction(
+            
+        title: confirmActionTitle, style: UIAlertAction.Style.default) { _ in
+            
+            confirmAction?()
+        }
+        
+        
+        if let cancel = cancelActionTitle, cancel != "" {
+            
+            let cancelAlertAction = UIAlertAction(
+                
+                title: cancel,
+                style: UIAlertAction.Style.destructive) { _ in
+                    
+                    cancelAction?()
+                    
+                    alertView.dismiss(animated: true, completion: nil)
+            }
+            
+            alertView.addAction(cancelAlertAction)
+            alertView.addAction(confirmAlertAction)
+
+        }
+        
+        self.present(alertView, animated: true, completion: nil)
     }
 }
