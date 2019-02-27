@@ -11,7 +11,7 @@ import UIKit
 
 extension UIToolbar {
     
-    func ToolbarPicker(title: String = "Done", selector : Selector) -> UIToolbar {
+    func ToolbarPicker(title: String = "Done", selector : Selector , cancelTitle: String = "Cancel" , cancelSelector: Selector) -> UIToolbar {
         
         let toolBar = UIToolbar()
         
@@ -21,9 +21,10 @@ extension UIToolbar {
         toolBar.sizeToFit()
         
         let doneButton = UIBarButtonItem(title: title, style: UIBarButtonItem.Style.plain, target: self, action: selector)
+        let cancelButton = UIBarButtonItem(title: cancelTitle, style: UIBarButtonItem.Style.plain, target: self, action: cancelSelector)
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         
-        toolBar.setItems([ spaceButton, doneButton], animated: false)
+        toolBar.setItems([cancelButton , spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
         
         return toolBar

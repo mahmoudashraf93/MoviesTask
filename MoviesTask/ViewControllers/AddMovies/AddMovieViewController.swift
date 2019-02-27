@@ -50,9 +50,20 @@ class AddMovieViewController: UIViewController {
             imageData = postedImage.pngData()
         }
         // validate input
-        let movie = UserAddedMoviesListViewModel(titleText: self.tfMovieName.text!, releaseDateText: self.tfReleaseDate.text, overviewText: self.tvOverview.text, imageData: imageData)
-        self.delegate?.didAdd(movie)
-        self.dismiss(animated: true, completion: nil)
+        if self.isValidInput() {
+            let movie = UserAddedMoviesListViewModel(titleText: self.tfMovieName.text!, releaseDateText: self.tfReleaseDate.text, overviewText: self.tvOverview.text, imageData: imageData)
+            self.delegate?.didAdd(movie)
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    private func isValidInput() -> Bool {
+        if self.tfMovieName.text == "" {
+            self.presentAlertView(withTitle: "Invalid Input", message: "Please type a movie title", cancelActionTitle: nil  , confirmActionTitle: "OK", cancelAction: nil, confirmAction: nil)
+            
+            return false
+        }
+        
+        return true
     }
     private func registerNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -87,7 +98,7 @@ class AddMovieViewController: UIViewController {
         self.releaseDatePickerView.addTarget(self, action: #selector(self.updateReleaseDateFromPicker(_:)), for: UIControl.Event.valueChanged)
         self.releaseDatePickerView.maximumDate = Date()
         self.releaseDatePickerView.datePickerMode = UIDatePicker.Mode.date
-        let toolBar = UIToolbar().ToolbarPicker(title: "Next", selector: #selector(self.toolbarBtnPressed))
+        let toolBar = UIToolbar().ToolbarPicker(title: "Next", selector: #selector(self.toolbarBtnPressed), cancelSelector: #selector(self.toolbarCancelBtnPressed))
         self.tfReleaseDate.inputView = self.releaseDatePickerView
         self.tfReleaseDate.inputAccessoryView = toolBar
         self.tfMovieName.inputAccessoryView = toolBar
@@ -111,6 +122,10 @@ class AddMovieViewController: UIViewController {
         else if tvOverview.isFirstResponder {
             self.tvOverview.resignFirstResponder()
         }
+    }
+    @objc func toolbarCancelBtnPressed(){
+        self.view.endEditing(true)
+        
     }
     @objc func updateReleaseDateFromPicker(_ sender: Any) {
         
