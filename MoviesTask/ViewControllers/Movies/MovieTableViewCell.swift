@@ -24,18 +24,21 @@ class MovieTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    func setupViews(isUserAdded: Bool = false){
+    func setupViews(){
         self.lblTitle.text = self.movie?.title ?? ""
         self.lblOverview.text = self.movie?.overview ?? ""
         self.lblReleaseDate.text = self.movie?.releaseDate ?? ""
-        
+
         if let imgUrl = self.movie?.posterPath {
             self.imgPoster.imageFromServerURL(urlString: imgUrl)
+            return
         }
-        else {
-            if isUserAdded { self.imgPoster.image = UIImage() }
-            self.imgPoster.image = UIImage(named:"placeholder")
+         if let imgData = self.movie?.imagePoster {
+            self.imgPoster.image = UIImage(data: imgData)
+            return
         }
+        self.imgPoster.image = UIImage(named:"placeholder")
+
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

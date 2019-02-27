@@ -7,13 +7,15 @@
 //
 
 import UIKit
-
+protocol AddMovieVCDelegate {
+    func didAdd(_ movie: Movie )
+}
 class AddMovieViewController: UIViewController {
     
     var releaseDatePickerView: UIDatePicker!
     @IBOutlet weak var scrollView: UIScrollView!
     var imagePicker: ImagePicker!
-
+    var delegate: AddMovieVCDelegate?
     @IBOutlet weak var imgPoster: UIImageView!
     @IBOutlet weak var btnAddPoster: UIButton!
     @IBOutlet weak var tvOverview: UITextView!
@@ -33,6 +35,16 @@ class AddMovieViewController: UIViewController {
         unregisterNotifications()
     }
     
+    @IBAction func btnAddPressed(_ sender: Any) {
+        
+        var imageData = UIImage(named: "placeholder")!.pngData()
+        if let postedImage = self.imgPoster.image {
+            imageData = postedImage.pngData()
+        }
+        let movie = Movie(title: self.tfMovieName.text, overview: self.tvOverview.text, releaseDate: self.tfReleaseDate.text, imagePoster: imageData)
+        self.delegate?.didAdd(movie)
+        self.dismiss(animated: true, completion: nil)
+    }
     private func registerNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -51,6 +63,9 @@ class AddMovieViewController: UIViewController {
         }
     }
     
+    @IBAction func btnCancelPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @objc func keyboardWillBeHidden(notification: NSNotification) {
         let contentInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInsets

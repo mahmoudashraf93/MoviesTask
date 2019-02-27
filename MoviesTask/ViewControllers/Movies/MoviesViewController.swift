@@ -12,6 +12,10 @@ import UIKit
 class MoviesViewController: UIViewController {
     
     @IBOutlet weak var moviesTableView: UITableView!
+    lazy var loadingView : UIAlertController = {
+        
+       return UIAlertController(title: "Loading ...", message: "Please wait", preferredStyle: .alert)
+    }()
     
     let pageSize = 20
     let userMovies = 0
@@ -27,19 +31,27 @@ class MoviesViewController: UIViewController {
         
     }
     func setupViewModel(){
+        self.startLoading()
         self.viewModel.getMovies()
        
+        self.viewModel.userAdderMovies.addObserver(self) { [weak self] in
+           
+            DispatchQueue.main.async {
+                self?.moviesTableView.reloadData()
+            }
+        }
         self.viewModel.movies.addObserver(self) { [weak self] in
-            
+            self?.stopLoading()
             DispatchQueue.main.async {
                 self?.moviesTableView.reloadData()
             }
         }
     }
+    
     func setupTableView(){
         self.moviesTableView.delegate = self
         self.moviesTableView.dataSource = self
-        self.moviesTableView.estimatedRowHeight = 300
+        self.moviesTableView.estimatedRowHeight = 100
         self.moviesTableView.rowHeight = UITableView.automaticDimension
         
         self.moviesTableView.register(UINib(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieTableViewCell")
@@ -50,7 +62,7 @@ class MoviesViewController: UIViewController {
     @IBAction func btnAddMoviePressed(_ sender: Any) {
         
         if let addMovieVC = self.storyboard?.instantiateViewController(withIdentifier: "AddMovieViewController") as? AddMovieViewController {
-            
+            addMovieVC.delegate = self.viewModel
             self.present(addMovieVC, animated: true, completion: nil)
         }
     }
@@ -113,4 +125,7 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 }
