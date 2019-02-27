@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E40BC8D2225974D0085994C /* AddMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C282220BEE90096B02D /* AddMovieViewController.swift */; };
+		1E40BC8F2225A76A0085994C /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40BC8E2225A76A0085994C /* UIViewController+Extensions.swift */; };
 		1E5AC68E2224A72D0053434F /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5AC68D2224A72D0053434F /* MoviesViewModel.swift */; };
 		1E5AC68F2224A72D0053434F /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5AC68D2224A72D0053434F /* MoviesViewModel.swift */; };
 		1E5AC6912224A7720053434F /* DynamicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5AC6902224A7720053434F /* DynamicValue.swift */; };
@@ -81,6 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E40BC8E2225A76A0085994C /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		1E5AC68D2224A72D0053434F /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		1E5AC6902224A7720053434F /* DynamicValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicValue.swift; sourceTree = "<group>"; };
 		1E5AC6932224E3000053434F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -304,6 +307,7 @@
 				1EB23C2B2220CE500096B02D /* UIToolbar+Extensions.swift */,
 				1EB23C2E2220D9B90096B02D /* UIScrollView+Extensions.swift */,
 				1E9197BA2222E79B0053B595 /* UIImageView+Extensions.swift */,
+				1E40BC8E2225A76A0085994C /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -465,6 +469,7 @@
 				1EB23C2F2220D9B90096B02D /* UIScrollView+Extensions.swift in Sources */,
 				1EB23BF2222056950096B02D /* URLParameterEncoder.swift in Sources */,
 				1EB23BBA22204EA60096B02D /* MoviesViewController.swift in Sources */,
+				1E40BC8F2225A76A0085994C /* UIViewController+Extensions.swift in Sources */,
 				1EB23C062220836A0096B02D /* ResponseHandler.swift in Sources */,
 				1EB23BB822204EA60096B02D /* AppDelegate.swift in Sources */,
 				1EB23C1922209FB00096B02D /* Parser.swift in Sources */,
@@ -493,6 +498,7 @@
 				1EB23BCD22204EAC0096B02D /* MoviesTaskTests.swift in Sources */,
 				1EB23C1A22209FB00096B02D /* Parser.swift in Sources */,
 				1EB23C36222105DC0096B02D /* ParserTests.swift in Sources */,
+				1E40BC8D2225974D0085994C /* AddMovieViewController.swift in Sources */,
 				1E5AC6952224E3000053434F /* ImagePicker.swift in Sources */,
 				1E5AC6922224A7720053434F /* DynamicValue.swift in Sources */,
 				1EB23C0F22209D0F0096B02D /* URLParameterEncoder.swift in Sources */,

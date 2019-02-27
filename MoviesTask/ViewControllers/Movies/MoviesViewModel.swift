@@ -10,8 +10,8 @@ import Foundation
 
 class MoviesViewModel {
     
-     var movies : DynamicValue<[Movie]?> = DynamicValue<[Movie]?>(nil)
-    var userAdderMovies = DynamicValue<[Movie]?>(nil)
+    var movies : DynamicValue<[Movie]?> = DynamicValue<[Movie]?>(nil)
+    var userAdderMovies : DynamicValue<[Movie]?> = DynamicValue<[Movie]?>(nil)
     let webMoviesRepo: WebMovieRepository<MovieResponse>
     private var pageNumber = 1
     private var totalPages = 1
@@ -24,9 +24,10 @@ class MoviesViewModel {
      var numberOfRowsForUserAddedMovies: Int {
         return self.userAdderMovies.value?.count ?? -1
     }
-    init(webMoviesRepo: WebMovieRepository<MovieResponse> = WebMovieRepository(), movies: DynamicValue<[Movie]?> = DynamicValue<[Movie]?>(nil) ) {
+    init(webMoviesRepo: WebMovieRepository<MovieResponse> = WebMovieRepository(), movies: DynamicValue<[Movie]?> = DynamicValue<[Movie]?>(nil), userAddedMoves: DynamicValue<[Movie]?> = DynamicValue<[Movie]?>(nil)  ) {
         self.webMoviesRepo = webMoviesRepo
         self.movies = movies
+        self.userAdderMovies = userAddedMoves
     }
     
     func getMovies(for page: Int = 1){
@@ -53,4 +54,19 @@ class MoviesViewModel {
             
         }
     }
+}
+
+extension MoviesViewModel: AddMovieVCDelegate {
+    func didAdd(_ movie: Movie) {
+        if self.userAdderMovies.value == nil {
+            self.userAdderMovies.value = [movie]
+            return
+        }
+        else {
+            self.userAdderMovies.value?.append(movie)
+            return
+        }
+    }
+    
+    
 }
