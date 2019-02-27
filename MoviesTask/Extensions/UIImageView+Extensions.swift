@@ -46,6 +46,7 @@ extension UIImageView {
                         return
                     }
                     let image = UIImage(data: data!)
+                    
                     self?.image = image
                     imageCache.setObject(image!, forKey: urlString as NSString)
                 }
