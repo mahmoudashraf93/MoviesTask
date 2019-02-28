@@ -12,6 +12,7 @@ import UIKit
 let imageCache = NSCache<NSString, UIImage>()
 
 extension UIImageView {
+    // a Dictionary to keep a reference of the right task to cancel
     struct TaskHolder {
         static  var task = [String: URLSessionDataTaskProtocol]()
     }
