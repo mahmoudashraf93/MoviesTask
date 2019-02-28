@@ -45,7 +45,7 @@ class AddMovieViewController: UIViewController {
     }
     @IBAction func btnAddPressed(_ sender: Any) {
         
-        var imageData = UIImage(named: "placeholder")!.pngData()
+        var imageData = UIImage(named: Constants.PlaceHolders.imagePlaceHolderName)!.pngData()
         if let postedImage = self.imgPoster.image {
             imageData = postedImage.pngData()
         }
