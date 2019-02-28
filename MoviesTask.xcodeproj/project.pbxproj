@@ -11,8 +11,6 @@
 		1E40BC8F2225A76A0085994C /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40BC8E2225A76A0085994C /* UIViewController+Extensions.swift */; };
 		1E5AC68E2224A72D0053434F /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5AC68D2224A72D0053434F /* MoviesViewModel.swift */; };
 		1E5AC68F2224A72D0053434F /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5AC68D2224A72D0053434F /* MoviesViewModel.swift */; };
-		1E5AC6912224A7720053434F /* DynamicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5AC6902224A7720053434F /* DynamicValue.swift */; };
-		1E5AC6922224A7720053434F /* DynamicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5AC6902224A7720053434F /* DynamicValue.swift */; };
 		1E5AC6942224E3000053434F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5AC6932224E3000053434F /* ImagePicker.swift */; };
 		1E5AC6952224E3000053434F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5AC6932224E3000053434F /* ImagePicker.swift */; };
 		1E9197BB2222E79B0053B595 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9197BA2222E79B0053B595 /* UIImageView+Extensions.swift */; };
@@ -30,7 +28,6 @@
 		1EB23BF2222056950096B02D /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BF1222056950096B02D /* URLParameterEncoder.swift */; };
 		1EB23BF42220581F0096B02D /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BF32220581F0096B02D /* NetworkRouter.swift */; };
 		1EB23BF6222058990096B02D /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BF5222058990096B02D /* Router.swift */; };
-		1EB23BF8222061F80096B02D /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BF7222061F80096B02D /* JSONParameterEncoder.swift */; };
 		1EB23BFA2220661E0096B02D /* MovieEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BF92220661E0096B02D /* MovieEndPoint.swift */; };
 		1EB23BFD222066ED0096B02D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BFC222066ED0096B02D /* NetworkManager.swift */; };
 		1EB23BFF22206C070096B02D /* WebMovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BFE22206C070096B02D /* WebMovieRepository.swift */; };
@@ -42,7 +39,6 @@
 		1EB23C0B22209CCB0096B02D /* WebRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C0122206D380096B02D /* WebRepository.swift */; };
 		1EB23C0C22209CD10096B02D /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C03222075E10096B02D /* MovieResponse.swift */; };
 		1EB23C0D22209CD80096B02D /* MovieEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BF92220661E0096B02D /* MovieEndPoint.swift */; };
-		1EB23C0E22209D0C0096B02D /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BF7222061F80096B02D /* JSONParameterEncoder.swift */; };
 		1EB23C0F22209D0F0096B02D /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BF1222056950096B02D /* URLParameterEncoder.swift */; };
 		1EB23C1022209D110096B02D /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BEE222055E50096B02D /* ParameterEncoding.swift */; };
 		1EB23C1122209D150096B02D /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C052220836A0096B02D /* ResponseHandler.swift */; };
@@ -85,7 +81,6 @@
 /* Begin PBXFileReference section */
 		1E40BC8E2225A76A0085994C /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		1E5AC68D2224A72D0053434F /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
-		1E5AC6902224A7720053434F /* DynamicValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicValue.swift; sourceTree = "<group>"; };
 		1E5AC6932224E3000053434F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		1E9197BA2222E79B0053B595 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		1EB23BB422204EA60096B02D /* MoviesTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,7 +103,6 @@
 		1EB23BF1222056950096B02D /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
 		1EB23BF32220581F0096B02D /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
 		1EB23BF5222058990096B02D /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		1EB23BF7222061F80096B02D /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
 		1EB23BF92220661E0096B02D /* MovieEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndPoint.swift; sourceTree = "<group>"; };
 		1EB23BFC222066ED0096B02D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1EB23BFE22206C070096B02D /* WebMovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebMovieRepository.swift; sourceTree = "<group>"; };
@@ -187,7 +181,6 @@
 				1EB23C1822209FB00096B02D /* Parser.swift */,
 				1EB23C30222105830096B02D /* Movies.json */,
 				1EB23C2D2220CE550096B02D /* Extensions */,
-				1E5AC6902224A7720053434F /* DynamicValue.swift */,
 				1E5AC6932224E3000053434F /* ImagePicker.swift */,
 			);
 			path = MoviesTask;
@@ -249,7 +242,6 @@
 			children = (
 				1EB23BEE222055E50096B02D /* ParameterEncoding.swift */,
 				1EB23BF1222056950096B02D /* URLParameterEncoder.swift */,
-				1EB23BF7222061F80096B02D /* JSONParameterEncoder.swift */,
 			);
 			path = Encoding;
 			sourceTree = "<group>";
@@ -457,7 +449,6 @@
 				1E5AC68E2224A72D0053434F /* MoviesViewModel.swift in Sources */,
 				1EB23BFF22206C070096B02D /* WebMovieRepository.swift in Sources */,
 				1E9197BB2222E79B0053B595 /* UIImageView+Extensions.swift in Sources */,
-				1EB23BF8222061F80096B02D /* JSONParameterEncoder.swift in Sources */,
 				1EB23C0222206D380096B02D /* WebRepository.swift in Sources */,
 				1EB23BEB2220555C0096B02D /* HTTPMethod.swift in Sources */,
 				1E5AC6942224E3000053434F /* ImagePicker.swift in Sources */,
@@ -465,7 +456,6 @@
 				1EB23C292220BEE90096B02D /* AddMovieViewController.swift in Sources */,
 				1EB23C04222075E10096B02D /* MovieResponse.swift in Sources */,
 				1EB23BF6222058990096B02D /* Router.swift in Sources */,
-				1E5AC6912224A7720053434F /* DynamicValue.swift in Sources */,
 				1EB23C2F2220D9B90096B02D /* UIScrollView+Extensions.swift in Sources */,
 				1EB23BF2222056950096B02D /* URLParameterEncoder.swift in Sources */,
 				1EB23BBA22204EA60096B02D /* MoviesViewController.swift in Sources */,
@@ -482,7 +472,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EB23C1B2220A1B80096B02D /* NetworkManager.swift in Sources */,
-				1EB23C0E22209D0C0096B02D /* JSONParameterEncoder.swift in Sources */,
 				1EB23C0722209C1E0096B02D /* Router.swift in Sources */,
 				1EB23C1422209D200096B02D /* HTTPMethod.swift in Sources */,
 				1EB23C1022209D110096B02D /* ParameterEncoding.swift in Sources */,
@@ -500,7 +489,6 @@
 				1EB23C36222105DC0096B02D /* ParserTests.swift in Sources */,
 				1E40BC8D2225974D0085994C /* AddMovieViewController.swift in Sources */,
 				1E5AC6952224E3000053434F /* ImagePicker.swift in Sources */,
-				1E5AC6922224A7720053434F /* DynamicValue.swift in Sources */,
 				1EB23C0F22209D0F0096B02D /* URLParameterEncoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

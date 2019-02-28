@@ -53,13 +53,11 @@ extension MovieApi: EndPointType {
     var task: HTTPTask {
         switch self {
         case .discover(let page):
-            return .requestParameters(bodyParameters: nil,
-                                      urlParameters: ["page":page,
+            return .requestParameters(urlParameters: ["page":page,
                                                       "api_key":NetworkManager.movieAPIKey])
         case .downloadImage(let urlStr):
             return .download(url: urlStr)
-        default:
-            return .request
+
         }
     }
     
