@@ -10,8 +10,7 @@ import Foundation
 
 
 protocol WebRepository: class {
-    associatedtype ResponseType
-    func get(page: Int, completion: @escaping (_ response: ResponseType?,_ error: String?)->())
+    func get(page: Int, completion: @escaping (_ response: MovieResponse?,_ error: String?)->())
 
 }
 

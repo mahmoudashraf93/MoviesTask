@@ -9,7 +9,7 @@
 import Foundation
 
 class MovieResponse: Codable {
-    let page, totalResults, totalPages: Int?
+    var page, totalResults, totalPages: Int?
     let movies: [Movie]?
 
     enum CodingKeys: String, CodingKey {
@@ -18,7 +18,12 @@ class MovieResponse: Codable {
         case totalPages = "total_pages"
         case movies = "results"
     }
-
+    init (){
+        self.movies = nil
+        self.page  = nil
+        self.totalResults = nil
+        self.totalPages  = nil
+    }
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

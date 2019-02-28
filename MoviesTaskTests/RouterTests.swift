@@ -22,11 +22,11 @@ class RouterTests: XCTestCase {
         }
         XCTAssert(session.lastUrl == URL(string: "https://test.com/testEndpoint"))
     }
-    func testUrlAndParametery(){
+    func testUrlAndParameter(){
         sut.request(.test(testParam: 0)) { (_, _, _) in
             
         }
-        XCTAssert(session.lastUrl == URL(string: "https://test.com/testEndpoint?testparam=0"))
+        XCTAssert(session.lastUrl == URL(string: "https://test.com/testEndpoint?testParam=0"))
     }
     
     func testResumeIsCalled() {
