@@ -38,18 +38,17 @@ extension UIImageView {
                     return
                 }
                 DispatchQueue.main.async{ [unowned self] in
-                    
                     if error != nil {
-                        self.image = UIImage(named: "placeholder")
+                        self.image = UIImage(named: Constants.PlaceHolders.imagePlaceHolderName)
                         return
                     }
                     
                     guard let imageData = data else {
-                        self.image = UIImage(named: "placeholder")
+                        self.image = UIImage(named: Constants.PlaceHolders.imagePlaceHolderName)
                         return
                     }
                     guard let image = UIImage(data: imageData) else {
-                        self.image = UIImage(named: "placeholder")
+                        self.image = UIImage(named: Constants.PlaceHolders.imagePlaceHolderName)
                         return
                     }
                     UIView.transition(with: self,

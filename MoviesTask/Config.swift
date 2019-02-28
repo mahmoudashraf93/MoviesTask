@@ -11,3 +11,9 @@ import Foundation
 var isUITesting: Bool {
     return ProcessInfo.processInfo.arguments.contains("UI-TESTING")
 }
+
+struct Constants{
+    struct PlaceHolders {
+        static let imagePlaceHolderName = "placeholder"
+    }
+}
