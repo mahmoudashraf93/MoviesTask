@@ -9,15 +9,17 @@
 import Foundation
 
 class Router<EndPoint: EndPointType>: NetworkRouter {
-    private var task: URLSessionTask?
-    
+    private let session: URLSessionProtocol
+    private var task: URLSessionDataTaskProtocol?
+    init (session: URLSessionProtocol = URLSession.shared){
+        self.session = session
+    }
     @discardableResult
-    func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) -> URLSessionTask? {
-        let session = URLSession.shared
+    func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) -> URLSessionDataTaskProtocol? {
         do {
             let request = try self.buildRequest(from: route)
             
-            task = session.dataTask(with: request, completionHandler: { data, response, error in
+           self.task = self.session.dataTask(with: request, completionHandler: { data, response, error in
                 completion(data, response, error)
             })
         }catch {

@@ -24,9 +24,15 @@ class MoviesViewModel {
         }
     }
     var reloadTableviewClosure: (()->())?
-    var failureClosure: ((String)->())?
-
-    let webMoviesRepo: WebMovieRepository<MovieResponse>
+    var failureClosure: ((String?)->())?
+    
+    var error: String? {
+        didSet {
+            self.failureClosure?(error)
+        }
+    }
+   
+    let webMoviesRepo: WebMovieRepository
     private var pageNumber = 1
     private var totalPages = 1
    
@@ -39,7 +45,7 @@ class MoviesViewModel {
     var numberOfRowsForUserAddedMovies: Int {
         return self.userAddedMovies.count
     }
-    init(webMoviesRepo: WebMovieRepository<MovieResponse> = WebMovieRepository()) {
+    init(webMoviesRepo: WebMovieRepository = WebMovieRepository()) {
         self.webMoviesRepo = webMoviesRepo
     }
     
@@ -47,7 +53,7 @@ class MoviesViewModel {
         self.webMoviesRepo.get(page: self.pageNumber) {[unowned self](movieResponse, error) in
             
             guard error == nil else {
-                self.failureClosure?(error ?? "")
+                self.error = error
                 return
             }
             self.totalPages = movieResponse?.totalPages ?? 0

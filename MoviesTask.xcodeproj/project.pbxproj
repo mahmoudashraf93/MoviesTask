@@ -13,6 +13,13 @@
 		1E5AC68F2224A72D0053434F /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5AC68D2224A72D0053434F /* MoviesViewModel.swift */; };
 		1E5AC6942224E3000053434F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5AC6932224E3000053434F /* ImagePicker.swift */; };
 		1E5AC6952224E3000053434F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5AC6932224E3000053434F /* ImagePicker.swift */; };
+		1E8B6AF622277C67009C9A27 /* UrlSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B6AF522277C67009C9A27 /* UrlSessionProtocol.swift */; };
+		1E8B6AF822277CE9009C9A27 /* URLSessionDataTaskProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B6AF722277CE9009C9A27 /* URLSessionDataTaskProtocol.swift */; };
+		1E8B6AF922277DF5009C9A27 /* URLSessionDataTaskProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B6AF722277CE9009C9A27 /* URLSessionDataTaskProtocol.swift */; };
+		1E8B6AFA22277DF7009C9A27 /* UrlSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B6AF522277C67009C9A27 /* UrlSessionProtocol.swift */; };
+		1E8B6AFE22278745009C9A27 /* RouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B6AFD22278745009C9A27 /* RouterTests.swift */; };
+		1E8B6B01222793B2009C9A27 /* UIToolbar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23C2B2220CE500096B02D /* UIToolbar+Extensions.swift */; };
+		1E8B6B0322279D29009C9A27 /* MoviesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B6B0222279D29009C9A27 /* MoviesViewModelTests.swift */; };
 		1E9197BB2222E79B0053B595 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9197BA2222E79B0053B595 /* UIImageView+Extensions.swift */; };
 		1EB23BB822204EA60096B02D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BB722204EA60096B02D /* AppDelegate.swift */; };
 		1EB23BBA22204EA60096B02D /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB23BB922204EA60096B02D /* MoviesViewController.swift */; };
@@ -82,6 +89,10 @@
 		1E40BC8E2225A76A0085994C /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		1E5AC68D2224A72D0053434F /* MoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
 		1E5AC6932224E3000053434F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		1E8B6AF522277C67009C9A27 /* UrlSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSessionProtocol.swift; sourceTree = "<group>"; };
+		1E8B6AF722277CE9009C9A27 /* URLSessionDataTaskProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionDataTaskProtocol.swift; sourceTree = "<group>"; };
+		1E8B6AFD22278745009C9A27 /* RouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTests.swift; sourceTree = "<group>"; };
+		1E8B6B0222279D29009C9A27 /* MoviesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModelTests.swift; sourceTree = "<group>"; };
 		1E9197BA2222E79B0053B595 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		1EB23BB422204EA60096B02D /* MoviesTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EB23BB722204EA60096B02D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +203,8 @@
 				1EB23BCC22204EAC0096B02D /* MoviesTaskTests.swift */,
 				1EB23BCE22204EAC0096B02D /* Info.plist */,
 				1EB23C35222105DC0096B02D /* ParserTests.swift */,
+				1E8B6AFD22278745009C9A27 /* RouterTests.swift */,
+				1E8B6B0222279D29009C9A27 /* MoviesViewModelTests.swift */,
 			);
 			path = MoviesTaskTests;
 			sourceTree = "<group>";
@@ -233,6 +246,8 @@
 				1EB23BF32220581F0096B02D /* NetworkRouter.swift */,
 				1EB23BF5222058990096B02D /* Router.swift */,
 				1EB23C052220836A0096B02D /* ResponseHandler.swift */,
+				1E8B6AF522277C67009C9A27 /* UrlSessionProtocol.swift */,
+				1E8B6AF722277CE9009C9A27 /* URLSessionDataTaskProtocol.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -449,6 +464,7 @@
 				1E5AC68E2224A72D0053434F /* MoviesViewModel.swift in Sources */,
 				1EB23BFF22206C070096B02D /* WebMovieRepository.swift in Sources */,
 				1E9197BB2222E79B0053B595 /* UIImageView+Extensions.swift in Sources */,
+				1E8B6AF622277C67009C9A27 /* UrlSessionProtocol.swift in Sources */,
 				1EB23C0222206D380096B02D /* WebRepository.swift in Sources */,
 				1EB23BEB2220555C0096B02D /* HTTPMethod.swift in Sources */,
 				1E5AC6942224E3000053434F /* ImagePicker.swift in Sources */,
@@ -458,6 +474,7 @@
 				1EB23BF6222058990096B02D /* Router.swift in Sources */,
 				1EB23C2F2220D9B90096B02D /* UIScrollView+Extensions.swift in Sources */,
 				1EB23BF2222056950096B02D /* URLParameterEncoder.swift in Sources */,
+				1E8B6AF822277CE9009C9A27 /* URLSessionDataTaskProtocol.swift in Sources */,
 				1EB23BBA22204EA60096B02D /* MoviesViewController.swift in Sources */,
 				1E40BC8F2225A76A0085994C /* UIViewController+Extensions.swift in Sources */,
 				1EB23C062220836A0096B02D /* ResponseHandler.swift in Sources */,
@@ -478,13 +495,18 @@
 				1EB23C1122209D150096B02D /* ResponseHandler.swift in Sources */,
 				1EB23C0B22209CCB0096B02D /* WebRepository.swift in Sources */,
 				1EB23C1322209D1D0096B02D /* HTTPTask.swift in Sources */,
+				1E8B6B0322279D29009C9A27 /* MoviesViewModelTests.swift in Sources */,
 				1EB23C1222209D1A0096B02D /* NetworkRouter.swift in Sources */,
 				1EB23C1522209D220096B02D /* EndPointType.swift in Sources */,
 				1EB23C0A22209CA80096B02D /* WebMovieRepository.swift in Sources */,
 				1EB23C0C22209CD10096B02D /* MovieResponse.swift in Sources */,
+				1E8B6AFA22277DF7009C9A27 /* UrlSessionProtocol.swift in Sources */,
 				1EB23C0D22209CD80096B02D /* MovieEndPoint.swift in Sources */,
 				1E5AC68F2224A72D0053434F /* MoviesViewModel.swift in Sources */,
 				1EB23BCD22204EAC0096B02D /* MoviesTaskTests.swift in Sources */,
+				1E8B6AF922277DF5009C9A27 /* URLSessionDataTaskProtocol.swift in Sources */,
+				1E8B6B01222793B2009C9A27 /* UIToolbar+Extensions.swift in Sources */,
+				1E8B6AFE22278745009C9A27 /* RouterTests.swift in Sources */,
 				1EB23C1A22209FB00096B02D /* Parser.swift in Sources */,
 				1EB23C36222105DC0096B02D /* ParserTests.swift in Sources */,
 				1E40BC8D2225974D0085994C /* AddMovieViewController.swift in Sources */,

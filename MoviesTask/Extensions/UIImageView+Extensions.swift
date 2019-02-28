@@ -13,10 +13,10 @@ let imageCache = NSCache<NSString, UIImage>()
 
 extension UIImageView {
     struct TaskHolder {
-        static  var task = [String: URLSessionTask]()
+        static  var task = [String: URLSessionDataTaskProtocol]()
     }
     
-    var taskStorage: [String: URLSessionTask] {
+    var taskStorage: [String: URLSessionDataTaskProtocol] {
         get {
             return TaskHolder.task
         }
@@ -33,7 +33,7 @@ extension UIImageView {
             }
         }
         else {
-            weak var task = WebMovieRepository().downloadImage(imageUrl: urlString) { (data, error) in
+            let task = WebMovieRepository().downloadImage(imageUrl: urlString) { (data, error) in
                 if error == "cancelled" {
                     return
                 }

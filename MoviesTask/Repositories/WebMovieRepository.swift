@@ -8,7 +8,7 @@
 
 import Foundation
 
-class WebMovieRepository<ResponseType: MovieResponse>: WebRepository {
+class WebMovieRepository: WebRepository {
     
     var router: Router<MovieApi>
     var movieParser: Parser<MovieResponse>
@@ -38,7 +38,7 @@ class WebMovieRepository<ResponseType: MovieResponse>: WebRepository {
         })
     }
     
-    func downloadImage(imageUrl: String, completion: @escaping (Data?, String?) -> ())-> URLSessionTask? {
+    func downloadImage(imageUrl: String, completion: @escaping (Data?, String?) -> ())-> URLSessionDataTaskProtocol? {
         
        let task = self.router.request(.downloadImage(url: imageUrl), completion: { (data, response, error) in
             
