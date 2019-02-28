@@ -1,40 +1,23 @@
 //
-//  ParserTests.swift
+//  MoviesViewModelTests.swift
 //  MoviesTaskTests
 //
-//  Created by mahmoud ashraf on 2/23/19.
+//  Created by mahmoud ashraf on 2/28/19.
 //  Copyright © 2019 SideProject. All rights reserved.
 //
 
 import XCTest
 
-class ParserTests: XCTestCase {
-    
-    var sut: Parser<MovieResponse>!
+class MoviesViewModelTests: XCTestCase {
+
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-         sut = Parser<MovieResponse>()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-    func testJSONMapping() throws {
-        let bundle = Bundle(for: type(of: self))
-        
-        guard let url = bundle.url(forResource: "Movies", withExtension: "json") else {
-            XCTFail("Missing file: Movies.json")
-            return
-        }
-        
-        let json = try Data(contentsOf: url)
-        let movieResponse = try sut.parse(from: json)
-        
-        XCTAssertEqual(movieResponse.page, 1)
-        XCTAssertEqual(movieResponse.totalResults, 403535)
-        XCTAssertEqual(movieResponse.movies?.count, 20)
 
-    }
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

@@ -40,13 +40,14 @@ class MoviesViewController: UIViewController {
         
         self.viewModel.failureClosure = { [unowned self] (error) in
             self.stopLoading(completion: {
-               
-                self.presentAlertView(withTitle: "Failed", message: error, cancelActionTitle: "Cancel", confirmActionTitle: "Retry", cancelAction: nil, confirmAction: {
-                    self.startLoading()
-                    self.viewModel.getMovies()
+                if let errorMsg = error {
+                    self.presentAlertView(withTitle: "Failed", message: errorMsg, cancelActionTitle: "Cancel", confirmActionTitle: "Retry", cancelAction: nil, confirmAction: {
+                        self.startLoading()
+                        self.viewModel.getMovies()
+                    })
+                }
             })
-           
-        })
+            
         }
     }
     

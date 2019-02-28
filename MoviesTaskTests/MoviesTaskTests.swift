@@ -9,6 +9,7 @@
 import XCTest
 @testable import MoviesTask
 enum MockApi {
+    case testURL
     case test(testParam: Int)
 }
 extension MockApi : EndPointType {
@@ -36,7 +37,10 @@ extension MockApi : EndPointType {
     var task: HTTPTask {
         switch self {
         case .test(let param):
-            return .requestParameters(bodyParameters: nil, urlParameters: ["testParam": param])
+            return .requestParameters( urlParameters: ["testParam": param])
+    
+        case .testURL:
+            return .requestParameters(urlParameters: nil)
         }
     }
     
@@ -49,19 +53,17 @@ extension MockApi : EndPointType {
 }
 class MoviesTaskTests: XCTestCase {
     
-    let router = Router<MockApi>()
+//    let router = Router<MockApi>()
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
     }
     func testBuildRequest(){
         
-        router.request(.test(testParam: 1)) { (data, response, error) in
-            XCTAssertNil(data)
+  
         }
       
-        
-    }
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
