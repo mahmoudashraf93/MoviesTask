@@ -9,11 +9,73 @@
 import XCTest
 
 class MoviesViewModelTests: XCTestCase {
-
+    let mockMoviesRepo = MockWebMoviesRepository()
+    var sut = MoviesViewModel()
+    
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+        self.sut = MoviesViewModel(webMoviesRepo: mockMoviesRepo)
 
+    }
+    func testGetMoviesCalled() {
+        self.sut.getMovies()
+        XCTAssertTrue(mockMoviesRepo.isGetMoviesCalled)
+    }
+    func testGetMoviesError() {
+        let networkError = NetworkError.encodingFailed
+        
+        self.sut.getMovies()
+        self.mockMoviesRepo.getFail(error: networkError.rawValue)
+        let expect = XCTestExpectation(description: "failure closure triggered")
+        sut.failureClosure = { (error) in
+            expect.fulfill()
+            XCTAssertEqual(error, error)
+
+        }
+        XCTAssertEqual(self.sut.error, networkError.rawValue)
+
+    }
+    func testCreateCellViewModelWhenPaging() {
+        // Given
+        let movie = StubGenerator().stubMovie()
+        mockMoviesRepo.movie = movie
+        let expect = XCTestExpectation(description: "reload closure triggered")
+        sut.reloadTableviewClosure = { () in
+            expect.fulfill()
+        }
+        
+        // When
+        sut.getMovies()
+        mockMoviesRepo.getSuccess()
+    
+        // total pages is > pagenumber
+        XCTAssertEqual( sut.numberOfRowsForMovies, movie.movies!.count + 1 )
+        
+        // XCTAssert reload closure triggered
+        wait(for: [expect], timeout: 1.0)
+        
+    }
+    func testCreateCellViewModelWhenNotPaging() {
+        // Given
+        let movie = StubGenerator().stubMovie()
+        movie.totalPages = 1
+        mockMoviesRepo.movie = movie
+        let expect = XCTestExpectation(description: "reload closure triggered")
+        sut.reloadTableviewClosure = { () in
+            expect.fulfill()
+        }
+        
+        // When
+        sut.getMovies()
+        mockMoviesRepo.getSuccess()
+        
+        // total pages is = pagenumber
+        XCTAssertEqual( sut.numberOfRowsForMovies, movie.movies!.count)
+        
+        // XCTAssert reload closure triggered
+        wait(for: [expect], timeout: 1.0)
+        
+    }
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
@@ -30,4 +92,40 @@ class MoviesViewModelTests: XCTestCase {
         }
     }
 
+}
+class MockWebMoviesRepository: WebRepository {
+    var isGetMoviesCalled = false
+    var movie: MovieResponse = MovieResponse()
+    var completionClosure: ((MovieResponse, String?) -> ())!
+    
+    func get(page: Int, completion: @escaping (MovieResponse?, String?) -> ()) {
+        isGetMoviesCalled = true
+        completionClosure = completion
+    }
+    func getSuccess() {
+        completionClosure( movie, nil )
+    }
+    
+    func getFail(error: String?) {
+        completionClosure(movie, error )
+    }
+    
+}
+class StubGenerator {
+    func stubMovie() -> MovieResponse {
+        let bundle = Bundle(for: type(of: self))
+
+        let url = bundle.url(forResource: "Movies", withExtension: "json")!
+        
+        do {
+        let json = try Data(contentsOf: url)
+        let decoder = JSONDecoder()
+        let movieRes = try! decoder.decode(MovieResponse.self, from: json)
+        return movieRes
+        }
+        catch {
+            fatalError("error decoding")
+
+        }
+    }
 }

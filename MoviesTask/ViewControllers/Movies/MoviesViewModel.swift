@@ -31,8 +31,7 @@ class MoviesViewModel {
             self.failureClosure?(error)
         }
     }
-   
-    let webMoviesRepo: WebMovieRepository
+    let webMoviesRepo: WebRepository
     private var pageNumber = 1
     private var totalPages = 1
    
@@ -45,7 +44,7 @@ class MoviesViewModel {
     var numberOfRowsForUserAddedMovies: Int {
         return self.userAddedMovies.count
     }
-    init(webMoviesRepo: WebMovieRepository = WebMovieRepository()) {
+    init(webMoviesRepo: WebRepository = WebMovieRepository()) {
         self.webMoviesRepo = webMoviesRepo
     }
     
