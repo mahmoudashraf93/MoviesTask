@@ -28,8 +28,16 @@ class MoviesViewController: UIViewController {
         
     }
     func setupViewModel(){
-        if !isUITesting{
-            self.startLoading()
+      
+        self.viewModel.startLoadingClosure = {[unowned self] in
+            if self.viewModel.isLoading {
+                
+                self.startLoading()
+            }
+            else {
+                self.stopLoading()
+            }
+            
         }
         self.viewModel.getMovies()
         
@@ -135,16 +143,16 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 extension MoviesViewController {
     func startLoading() {
-        
-        let indicator = UIActivityIndicatorView(frame: loadingView.view.bounds)
+        DispatchQueue.main.async {
+
+        let indicator = UIActivityIndicatorView(frame: self.loadingView.view.bounds)
         indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        loadingView.view.addSubview(indicator)
+        self.loadingView.view.addSubview(indicator)
         indicator.style = .gray
         indicator.isUserInteractionEnabled = false
         indicator.startAnimating()
         
-        DispatchQueue.main.async {
             self.present(self.loadingView, animated: true, completion: nil)
         }
     }

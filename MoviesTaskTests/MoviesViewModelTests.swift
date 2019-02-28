@@ -35,6 +35,16 @@ class MoviesViewModelTests: XCTestCase {
         XCTAssertEqual(self.sut.error, networkError.rawValue)
 
     }
+    func testLoadingClosureCalled(){
+        self.sut.getMovies()
+        let expect = XCTestExpectation(description: "loading closure triggered")
+        sut.startLoadingClosure = {
+            expect.fulfill()
+            
+        }
+        XCTAssertEqual(self.sut.isLoading, true)
+
+    }
     func testCreateCellViewModelWhenPaging() {
         // Given
         let movie = StubGenerator().stubMovie()

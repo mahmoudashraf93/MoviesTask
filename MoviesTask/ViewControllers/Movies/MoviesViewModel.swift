@@ -23,41 +23,51 @@ class MoviesViewModel {
             
         }
     }
+    public var isLoading: Bool = false{
+        didSet{
+            startLoadingClosure?()
+        }
+    }
     var reloadTableviewClosure: (()->())?
     var failureClosure: ((String?)->())?
-    
+    var startLoadingClosure: (()->())?
+
     var error: String? {
         didSet {
             self.failureClosure?(error)
         }
     }
     let webMoviesRepo: WebRepository
+   
     private var pageNumber = 1
     private var totalPages = 1
     
-    var isPaging: Bool {
+    private var isPaging: Bool {
         return pageNumber < self.totalPages
     }
-    var numberOfRowsForMovies: Int {
+    public var numberOfRowsForMovies: Int {
         return isPaging ? self.webMovies.count + 1 : self.webMovies.count
     }
-    var numberOfRowsForUserAddedMovies: Int {
+   public var numberOfRowsForUserAddedMovies: Int {
         return self.userAddedMovies.count
     }
     init(webMoviesRepo: WebRepository = WebMovieRepository()) {
         self.webMoviesRepo = webMoviesRepo
     }
     
-    public func getMovies(for page: Int = 1){
+    public func getMovies(){
         
-        if isUITesting{
+        if isUITesting {
             self.mapFetchedMovies(movies: StubGenerator().stubMovie().movies!)
             self.reloadTableviewClosure?()
             return
             
         }
+        self.isLoading = self.pageNumber == 1 ? true : false
         self.webMoviesRepo.get(page: self.pageNumber) {[unowned self](movieResponse, error) in
             
+            self.isLoading = false // dont load in pagination
+
             guard error == nil else {
                 self.error = error
                 return
