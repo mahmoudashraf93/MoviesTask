@@ -28,7 +28,9 @@ class MoviesViewController: UIViewController {
         
     }
     func setupViewModel(){
-        self.startLoading()
+        if !isUITesting{
+            self.startLoading()
+        }
         self.viewModel.getMovies()
         
         self.viewModel.reloadTableviewClosure = { [unowned self] in

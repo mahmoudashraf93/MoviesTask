@@ -20,7 +20,7 @@ class MoviesViewModel {
         didSet{
             // reload tableview
             self.reloadTableviewClosure?()
-
+            
         }
     }
     var reloadTableviewClosure: (()->())?
@@ -34,7 +34,7 @@ class MoviesViewModel {
     let webMoviesRepo: WebRepository
     private var pageNumber = 1
     private var totalPages = 1
-   
+    
     var isPaging: Bool {
         return pageNumber < self.totalPages
     }
@@ -48,7 +48,14 @@ class MoviesViewModel {
         self.webMoviesRepo = webMoviesRepo
     }
     
-   public func getMovies(for page: Int = 1){
+    public func getMovies(for page: Int = 1){
+        
+        if isUITesting{
+            self.mapFetchedMovies(movies: StubGenerator().stubMovie().movies!)
+            self.reloadTableviewClosure?()
+            return
+            
+        }
         self.webMoviesRepo.get(page: self.pageNumber) {[unowned self](movieResponse, error) in
             
             guard error == nil else {
@@ -60,20 +67,20 @@ class MoviesViewModel {
             guard let movies = movieResponse?.movies else {
                 return
             }
-           
+            
             self.mapFetchedMovies(movies: movies)
             self.pageNumber += 1
             
         }
     }
     public func getWebMovieCellViewModel(at index: Int) -> WebMoviesListViewModel {
-       return self.webMovies[index]
+        return self.webMovies[index]
     }
     public func getUserAddedMovieCellViewModel(at index: Int) -> UserAddedMoviesListViewModel {
         return self.userAddedMovies[index]
     }
     public func shouldShowLoadingRow(indexPath: IndexPath) -> Bool {
-       return indexPath.row == self.webMovies.count && self.isPaging && !self.isCellForMyMoviesSection(indexPath:indexPath)
+        return indexPath.row == self.webMovies.count && self.isPaging && !self.isCellForMyMoviesSection(indexPath:indexPath)
     }
     public func isCellForMyMoviesSection (indexPath: IndexPath) -> Bool {
         return self.numberOfRowsForUserAddedMovies > 0 && indexPath.section == 0
@@ -87,14 +94,14 @@ class MoviesViewModel {
                                    imagePath: $0.posterPath ?? "")
         }
         self.webMovies.append(contentsOf: mappedMovies)
-    
+        
     }
 }
 
 extension MoviesViewModel: AddMovieVCDelegate {
     func didAdd(_ movie: UserAddedMoviesListViewModel) {
         
-       self.userAddedMovies.append(movie)
+        self.userAddedMovies.append(movie)
     }
     
     
