@@ -40,44 +40,28 @@ class Router<EndPoint: EndPointType>: NetworkRouter {
         request.httpMethod = route.httpMethod.rawValue
         do {
             switch route.task {
-            case .request:
-                request.setValue("multipart/form-data", forHTTPHeaderField: "Content-Type")
-            case .requestParameters(let bodyParameters,
-                                    let urlParameters):
+            case .requestParameters(let urlParameters):
                 
-                try self.configureParameters(bodyParameters: bodyParameters,
-                                             urlParameters: urlParameters,
+                try self.configureParameters(urlParameters: urlParameters,
                                              request: &request)
-                
-            case .requestParametersAndHeaders(let bodyParameters,
-                                              let urlParameters,
-                                              let additionalHeaders):
-                
-                self.addAdditionalHeaders(additionalHeaders, request: &request)
-                try self.configureParameters(bodyParameters: bodyParameters,
-                                             urlParameters: urlParameters,
-                                             request: &request)
+        
             case .download:
                 // the url is already setup
                return request
             }
             return request
+
         } catch {
             throw error
         }
     }
     
-    fileprivate func configureParameters(bodyParameters: Parameters?,
-                                         urlParameters: Parameters?,
+    fileprivate func configureParameters(urlParameters: Parameters?,
                                          request: inout URLRequest) throws {
         do {
             if let urlParameters = urlParameters {
                 try URLParameterEncoder().encode(urlRequest: &request,
                                                  with: urlParameters)
-            }
-            if let bodyParameters = bodyParameters {
-            try JSONParameterEncoder().encode(urlRequest: &request,
-                                              with: bodyParameters)
             }
         } catch {
             throw error
